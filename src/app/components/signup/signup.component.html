@@ -1,0 +1,93 @@
+<div class="outer">
+    <div class="container">
+        <div class="row">
+         <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
+            <div class="panel border bg-white">
+                <div class="panel-heading">
+                    <h3 class="pt-3 font-weight-bold">Signup</h3>
+                </div>
+                <div class="panel-body p-3">
+                    <form [formGroup]="signup" (ngSubmit)="SingnupSubmited()">
+                        <div class="form-group pt-3">
+                         <div class="input-field"  [class.error]="signup.controls['firstname'].dirty && signup.hasError('required','firstname')" >
+                                <input type="text" formControlName="firstname" placeholder="Firstname">
+                         </div>
+                        </div>
+                        <small class="text-danger" *ngIf="Firstname.errors?.['required'] && (Firstname.touched || Firstname.dirty)">*First name is required </small>
+                        <small class="text-danger" *ngIf="Firstname.errors?.['minlength']  && (Firstname.touched || Firstname.dirty)">*Length is too week </small>
+                        <small class="text-danger" *ngIf="Firstname.errors?.['pattern']  && (Firstname.touched || Firstname.dirty)">*First name should start with Alfhabet </small>
+
+
+
+                        <div class="form-group pt-3">
+                            <div class="input-field" [class.error]="signup.controls['lastname'].dirty && signup.hasError('required','lastname')" >
+                                   <input type="text" formControlName="lastname" placeholder="Lastname">
+                            </div>
+                           </div>
+                           <small class="text-danger" *ngIf="Lastname.errors?.['required'] && (Lastname.touched || Lastname.dirty)">*Lastt name is required </small>
+                           <small class="text-danger" *ngIf="Lastname.errors?.['minlength']  && (Lastname.touched || Lastname.dirty)">*Length is Short </small>
+                           <small class="text-danger" *ngIf="Lastname.errors?.['pattern']  && (Lastname.touched || Lastname.dirty)">*First name should start with Alfhabet </small>
+                           <div class="form-group pt-3">
+                            <div class="input-field"  [class.error]="signup.controls['email'].dirty && signup.hasError('required','email')">
+                                   <input type="email" formControlName="email" placeholder="Email">
+                            </div>
+                           </div>
+                           <small class="text-danger" *ngIf="Email.errors?.['required'] && (Email.touched || Email.dirty) " >*Email is required </small>
+                           <small class="text-danger" *ngIf="Email.errors?.['email'] && (Email.touched || Email.dirty)">*Email is invalid </small>
+                        
+
+                           <div class="form-group pt-3">
+
+                            <div class="input-field" [class.error]="signup.controls['phone'].dirty && signup.hasError('required','phone')">
+                                   <input type="text" formControlName="phone" placeholder="phone">
+                            </div>
+                           </div>
+                           <small class="text-danger" *ngIf="Phone.errors?.['required'] && (Phone.touched || Phone.dirty)">*Phone is requried </small>
+                           <small class="text-danger" *ngIf="Phone.errors?.['pattern'] && (Phone.touched || Phone.dirty)">*Number is invalid</small>
+                           <small class="text-danger" *ngIf="Phone.errors?.['minlength'] && (Phone.touched || Phone.dirty)">*length is short </small>
+                           <small class="text-danger" *ngIf="Phone.errors?.['maxlength'] && (Phone.touched || Phone.dirty)">*length is long </small>
+
+                           <div class="form-group pt-3">
+                            <div class="input-field"  [class.error]="signup.controls['username'].dirty && signup.hasError('required','username')">
+                                   <span class="fa fa-user p-2"></span>
+                                   <input type="text" formControlName="username" placeholder="Username">
+                            </div>
+                           </div>
+                           <small class="text-danger"  *ngIf="Username.errors?.['required'] && (Username.touched || Username.dirty)" >*Username is required </small>
+
+  
+                        <div class="form-group pt-3">
+                            <div class="input-field" [class.error]="signup.controls['password'].dirty && signup.hasError('required','password')">
+                                   <span class="fa fa-lock p-2"></span>
+                                   <input formControlName="password" [type]="type" placeholder="Password">
+                                   <span  (click)="hideShowPass()" class="fa {{eyeicon}}"></span>
+                            </div>
+                           </div>
+                        <small class="text-danger" *ngIf="Password.errors?.['required'] && (Password.touched || Password.dirty)">*Password is requried </small>
+                        <small class="text-danger" *ngIf="Password.errors?.['minlength'] || Password.errors?.['maxlength']  && (Password.touched || Password.dirty)">*Password should be at lest 6 and at the max 15 character long. </small>
+
+
+                        
+                        <div class="form-group pt-3">
+                            <div class="input-field" [class.error]="signup.controls['rewp'].dirty && signup.hasError('required','rewp')">
+                                   <span class="fa fa-lock p-2"></span>
+                                   <input formControlName="rewp" [type]="type" placeholder="RePassword">
+                                   <span  (click)="hideShowPass()" class="fa {{eyeicon}}"></span>
+                            </div>
+                           </div>
+                           <small class="text-danger" [ngStyle]="{'display':repeatpass}">Repeat pass is invalid </small>
+                           
+                        <button  type="submit" class="btn btn-primary btn-block mt-4 w-100">Signup</button>
+                        <div class="text-center pt-4 text muted">Already have account?<a id="forget"routerLink="/login">login</a></div>
+                    </form>
+
+                </div>
+
+            </div>
+
+         </div>
+        </div>
+    </div>
+
+</div>
+
