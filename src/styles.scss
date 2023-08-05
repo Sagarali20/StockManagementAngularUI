@@ -15,5 +15,15 @@
  nav#layout-navbar {
   z-index: unset;
 }
+
+.validsign{
+  color: red;
+}
+
+.input-field.error{
+  border:1px solid red;
+  color :red;
+  border-radius: 5px;
+}
  
 /* You can add global styles to this file, and also import other style files */

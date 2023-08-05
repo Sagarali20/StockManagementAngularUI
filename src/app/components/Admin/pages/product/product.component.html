@@ -1,1 +1,266 @@
-<p>product works!</p>
+<div class="container"> 
+    <button type="button"class="btn btn-primary mt-1 fa fa-plus" style="float: right;" data-bs-toggle="modal" data-bs-target="#backDropModal">
+      New
+     </button>
+     </div>
+      <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="card" style="margin-top: 15px;">
+          <h5 class="card-header">Categorys</h5>
+          <div class="table-responsive text-nowrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody class="table-border-bottom-0">
+               <!-- <tr *ngFor="let item of Categorys let i = index">
+                  <td>{{i+1}}</td>             
+                  <td>{{item.name}}</td> 
+    
+                  <td>
+                    <button type="button" class="btn  delete fa fa-trash" (click)="DeleteClick(item.id)" ></button>
+                  </td>
+                </tr>  -->
+    
+              </tbody>
+            </table>
+          </div>
+        </div>
+    
+    
+          <div class="col-lg-4 col-md-3">
+            <div class="mt-3">
+              <!-- Button trigger modal -->
+              <!-- Modal -->
+              <div class="modal fade" id="backDropModal" data-bs-backdrop="static" tabindex="-1">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <form  [formGroup]="Equipment" (ngSubmit)="SaveProduct()">
+        
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="backDropModalTitle">Add</h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body" >
+        
+                      <div class="row">
+                        <div class="col-xl">
+                            <div class="card mb-4">
+    
+                              <div class="card-body">
+
+                                <div class="row">
+
+
+                                  <div class="mb-3 col-md-4">
+                                    <label class="form-label" for="basic-icon-default-fullname">Product Name <span class="validsign">*</span></label>
+                                        <div class="input-field"  [class.error]="Equipment.controls['name'].dirty && Equipment.hasError('required','name')" >
+
+                                      <input
+                                        type="text"
+                                        class="form-control"
+                                        id="basic-icon-default-fullname"
+                                        placeholder="Enter name"
+                                        formControlName="name"
+                                        aria-label="John Doe"
+                                        aria-describedby="basic-icon-default-fullname2"
+                                      />
+                                    </div>
+                                    <small class="text-danger" *ngIf="Productname.errors?.['required'] && (Productname.touched || Productname.dirty)">Product name is required. </small>
+
+                                   </div>
+                                   <div class="mb-3 col-md-4">
+                                    <label class="form-label" for="basic-icon-default-fullname">Category <span class="validsign">*</span></label>
+                                    <div class="input-field"  [class.error]="Equipment.controls['categoryId'].dirty && Equipment.hasError('required','categoryId')" >
+                      
+                                      <input
+                                        type="text"
+                                        class="form-control"
+                                        id="basic-icon-default-fullname"
+                                        placeholder="Enter category"
+                                        formControlName="categoryId"
+                                        aria-label="John Doe"
+                                        aria-describedby="basic-icon-default-fullname2"
+                                      />
+                                    </div>
+                                    <small class="text-danger" *ngIf="Productname.errors?.['required'] && (Productname.touched || Productname.dirty)">Category is required. </small>
+
+                                  </div>
+                                  <div class="mb-3 col-md-4">
+                                    <label class="form-label" for="basic-icon-default-fullname">SKU</label>
+                                    <div class="input-group input-group-merge ">
+                                      <input
+                                        type="text"
+                                        class="form-control"
+                                        id="basic-icon-default-fullname"
+                                        placeholder="Enter sku"
+                                        formControlName="sku"
+                                        aria-label="John Doe"
+                                        aria-describedby="basic-icon-default-fullname2"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="mb-3 col-md-4">
+                                    <label class="form-label" for="basic-icon-default-fullname">Retail Price <span class="validsign">*</span></label>
+                                    <div class="input-field"  [class.error]="Equipment.controls['categoryId'].dirty && Equipment.hasError('required','categoryId')" >
+                                        <div class="input-group input-group-merge ">
+
+                                        <span id="basic-icon-default-fullname2" class="input-group-text"
+                                        ><i class="fa fa-money"></i
+                                      ></span>
+                                      <input
+                                        type="number"
+                                        min="0"
+                                        class="form-control"
+                                        id="basic-icon-default-fullname"
+                                        placeholder="Enter retail price"
+                                        formControlName="retail"
+                                        aria-label="John Doe"
+                                        aria-describedby="basic-icon-default-fullname2"
+                                      />
+                                    </div>
+                                    </div>
+                                    <small class="text-danger" *ngIf="Retailprice.errors?.['required'] && (Retailprice.touched || Retailprice.dirty)">Retail is required. </small>
+                                  </div>
+                                  <div class="mb-3 col-md-4">
+                                    <label class="form-label" for="basic-icon-default-fullname">Wholesale Price</label>
+                                    <div class="input-group input-group-merge ">
+                                      <span id="basic-icon-default-fullname2" class="input-group-text"
+                                        ><i class="fa fa-money"></i
+                                      ></span>
+                                      <input
+                                        type="number"
+                                        min="0"
+                                        class="form-control"
+                                        id="basic-icon-default-fullname"
+                                        placeholder="Enter Wholesale price"
+                                        formControlName="wholeSalePrice"
+                                        aria-label="John Doe"
+                                        aria-describedby="basic-icon-default-fullname2"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="mb-3 col-md-4">
+                                    <label class="form-label" for="basic-icon-default-fullname">Unit</label>
+                                    <div class="input-group input-group-merge ">
+        
+                                      <input
+                                        type="text"
+                                        class="form-control"
+                                        id="basic-icon-default-fullname"
+                                        placeholder=""
+                                        formControlName="unit"
+                                        aria-label="John Doe"
+                                        aria-describedby="basic-icon-default-fullname2"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="mb-3 col-md-4">
+                                    <label class="form-label" for="basic-icon-default-fullname">Local Code</label>
+                                    <div class="input-group input-group-merge ">
+                
+                                      <input
+                                        type="text"
+                                        class="form-control"
+                                        id="basic-icon-default-fullname"
+                                        placeholder="Enter local code"
+                                        formControlName="localCode"
+                                        aria-label="John Doe"
+                                        aria-describedby="basic-icon-default-fullname2"
+                                      />
+                                    </div>
+                                  </div>
+
+
+                                  <div class="mb-3 col-md-4">
+                                    <label class="form-label" for="basic-icon-default-fullname">Barcode </label>
+                                    <div class="input-group input-group-merge ">
+                
+                                      <input
+                                        type="text"
+                                        class="form-control"
+                                        id="basic-icon-default-fullname"
+                                        placeholder="Enter barcode"
+                                        formControlName="barcode"
+                                        aria-label="John Doe"
+                                        aria-describedby="basic-icon-default-fullname2"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="mb-3 col-md-4">
+                                    <label class="form-label" for="basic-icon-default-fullname">Rack No</label>
+                                    <div class="input-group input-group-merge ">
+                
+                                      <input
+                                        type="text"
+                                        class="form-control"
+                                        id="basic-icon-default-fullname"
+                                        placeholder="Enter Rack no"
+                                        formControlName="rackNo"
+                                        aria-label="John Doe"
+                                        aria-describedby="basic-icon-default-fullname2"
+                                      />
+                                    </div>
+                                  </div>
+                                  
+
+                                  <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" formControlName="IsActive" />
+                                    <label class="form-check-label" for="defaultCheck1"> IsActive? </label>
+                                  </div>
+                                  
+
+                                  <div class="mb-3">
+                                    <label class="form-label" for="basic-icon-default-message">Notes</label>
+                                    <div class="input-group input-group-merge">
+                                      <span id="basic-icon-default-message2" class="input-group-text"
+                                        ><i class="fa fa-comment"></i
+                                      ></span>
+                                      <textarea
+                                        id="basic-icon-default-message"
+                                        class="form-control"
+                                        formControlName="note"
+                                        placeholder="Hi, Do you have a moment to talk this product?"
+                                        aria-label="Hi, Do you have a moment to talk Joe?"
+                                        aria-describedby="basic-icon-default-message2"
+                                      ></textarea>
+                                    </div>
+                                  </div>
+
+
+
+                                  </div>
+
+                    
+                              </div>
+                            </div>
+                          </div>
+
+        
+                      </div>
+        
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-outline-secondary" #closebutton data-bs-dismiss="modal">
+                        Close
+                      </button>
+                      <button type="submit" class="btn btn-primary"   >Save</button>
+                    </div>
+                  </form>
+        
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+    </div>
+    
