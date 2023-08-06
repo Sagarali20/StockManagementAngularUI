@@ -49,17 +49,12 @@
                         aria-label="Close"
                       ></button>
                     </div>
-                    <div class="modal-body" >
-        
+                    <div class="modal-body" >        
                       <div class="row">
                         <div class="col-xl">
                             <div class="card mb-4">
-    
                               <div class="card-body">
-
                                 <div class="row">
-
-
                                   <div class="mb-3 col-md-4">
                                     <label class="form-label" for="basic-icon-default-fullname">Product Name <span class="validsign">*</span></label>
                                         <div class="input-field"  [class.error]="Equipment.controls['name'].dirty && Equipment.hasError('required','name')" >
@@ -81,17 +76,13 @@
                                     <label class="form-label" for="basic-icon-default-fullname">Category <span class="validsign">*</span></label>
                                     <div class="input-field"  [class.error]="Equipment.controls['categoryId'].dirty && Equipment.hasError('required','categoryId')" >
                       
-                                      <input
-                                        type="text"
-                                        class="form-control"
-                                        id="basic-icon-default-fullname"
-                                        placeholder="Enter category"
-                                        formControlName="categoryId"
-                                        aria-label="John Doe"
-                                        aria-describedby="basic-icon-default-fullname2"
-                                      />
+                    
+                                      <select id="select2"  class="  form-control " formControlName="categoryId">
+                                        <option value="">Select an option</option>
+                                        <option *ngFor="let option of Categorys " [value]="option.categoryId">{{ option.name }}</option>
+                                      </select>
                                     </div>
-                                    <small class="text-danger" *ngIf="Productname.errors?.['required'] && (Productname.touched || Productname.dirty)">Category is required. </small>
+                                    <small class="text-danger" *ngIf="Category.errors?.['required'] && (Category.touched || Category.dirty)">Category is required. </small>
 
                                   </div>
                                   <div class="mb-3 col-md-4">
@@ -178,8 +169,6 @@
                                       />
                                     </div>
                                   </div>
-
-
                                   <div class="mb-3 col-md-4">
                                     <label class="form-label" for="basic-icon-default-fullname">Barcode </label>
                                     <div class="input-group input-group-merge ">
@@ -211,7 +200,6 @@
                                     </div>
                                   </div>
                                   
-
                                   <div class="form-check mb-3">
                                     <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" formControlName="IsActive" />
                                     <label class="form-check-label" for="defaultCheck1"> IsActive? </label>
@@ -243,8 +231,6 @@
                               </div>
                             </div>
                           </div>
-
-        
                       </div>
         
                     </div>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormControl,FormGroup, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
-import { single } from 'rxjs';
 import validateForm from 'src/app/helpers/validationform';
 import { User } from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';

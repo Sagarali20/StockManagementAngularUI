@@ -119,6 +119,7 @@ let menu, animate;
 
 $( document ).ready(function() {
 
+
   $("#toggle").click(function() {
    
      $(".profileshow").toggle(); 

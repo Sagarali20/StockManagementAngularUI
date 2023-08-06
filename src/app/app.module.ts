@@ -16,7 +16,7 @@ import { DashboardComponent } from './components/Admin/dashboard/dashboard.compo
 import { DashboarduiComponent } from './components/dashboardui/dashboardui.component';
 import { CategoryComponent } from './components/Admin/pages/category/category.component';
 import { ProductComponent } from './components/Admin/pages/product/product.component';
-import { TodosStore } from './services/todos-store.service';
+
 
 @NgModule({
   declarations: [
@@ -28,21 +28,22 @@ import { TodosStore } from './services/todos-store.service';
     DashboardComponent,
     DashboarduiComponent,
     CategoryComponent,
-    ProductComponent
+    ProductComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgToastModule
+    NgToastModule,
+    
   ],
   providers: [{
   provide:HTTP_INTERCEPTORS,
   useClass:TokenInterceptor,
   multi:true
 
-  },User,TodosStore],
+  },User],
 
   bootstrap: [AppComponent]
 })
