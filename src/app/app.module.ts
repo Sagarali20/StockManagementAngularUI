@@ -16,6 +16,8 @@ import { DashboardComponent } from './components/Admin/dashboard/dashboard.compo
 import { DashboarduiComponent } from './components/dashboardui/dashboardui.component';
 import { CategoryComponent } from './components/Admin/pages/category/category.component';
 import { ProductComponent } from './components/Admin/pages/product/product.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+
 
 
 @NgModule({
@@ -36,6 +38,7 @@ import { ProductComponent } from './components/Admin/pages/product/product.compo
     HttpClientModule,
     ReactiveFormsModule,
     NgToastModule,
+    NgSelectModule
     
   ],
   providers: [{

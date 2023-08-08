@@ -55,6 +55,7 @@ export class CategoryComponent implements OnInit {
     }
   }
  async DeleteClick(item: any) {
+  
       if(await SwalAlert.IsDelete())
       {
         this.categoryservice.DeleteCategory(item).subscribe({

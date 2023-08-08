@@ -5,25 +5,44 @@
      </div>
       <div class="container-xxl flex-grow-1 container-p-y">
         <div class="card" style="margin-top: 15px;">
-          <h5 class="card-header">Categorys</h5>
+          <h5 class="card-header">Products</h5>
           <div class="table-responsive text-nowrap">
             <table class="table">
               <thead>
                 <tr>
                   <th>#</th>
                   <th>Name</th>
+                  <th>Category</th>
+                  <th>SKU</th>
+                  <th>Local code</th>
+                  <th>Rack no</th>
+                  <th>Unit</th>
+                  <th>Retail price</th>
+                  <th>Wholesale price</th>
+
+
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody class="table-border-bottom-0">
-               <!-- <tr *ngFor="let item of Categorys let i = index">
+               <tr *ngFor="let item of Equipments let i = index">
                   <td>{{i+1}}</td>             
                   <td>{{item.name}}</td> 
-    
+                  <td>{{item.categoryId}}</td> 
+                  <td>{{item.sku}}</td> 
+                  <td>{{item.localCode}}</td> 
+                  <td>{{item.rackNo}}</td> 
+                  <td>{{item.unit}}</td> 
+                  <td>{{item.retail}}</td> 
+                  <td>{{item.wholeSalePrice}}</td> 
+
+        
                   <td>
-                    <button type="button" class="btn  delete fa fa-trash" (click)="DeleteClick(item.id)" ></button>
+                    <button type="button" class="btn  edit fa fa-edit"   ></button>
+
+                    <button type="button" class="btn  delete fa fa-trash" (click)="DeleteClick(item.id)"  ></button>
                   </td>
-                </tr>  -->
+                </tr> 
     
               </tbody>
             </table>
@@ -38,7 +57,7 @@
               <div class="modal fade" id="backDropModal" data-bs-backdrop="static" tabindex="-1">
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
-                    <form  [formGroup]="Equipment" (ngSubmit)="SaveProduct()">
+                    <form  [formGroup]="EquipmentForm" (ngSubmit)="SaveProduct()">
         
                     <div class="modal-header">
                       <h5 class="modal-title" id="backDropModalTitle">Add</h5>
@@ -57,7 +76,7 @@
                                 <div class="row">
                                   <div class="mb-3 col-md-4">
                                     <label class="form-label" for="basic-icon-default-fullname">Product Name <span class="validsign">*</span></label>
-                                        <div class="input-field"  [class.error]="Equipment.controls['name'].dirty && Equipment.hasError('required','name')" >
+                                        <div class="input-field"  [class.error]="EquipmentForm.controls['name'].dirty && EquipmentForm.hasError('required','name')" >
 
                                       <input
                                         type="text"
@@ -74,13 +93,21 @@
                                    </div>
                                    <div class="mb-3 col-md-4">
                                     <label class="form-label" for="basic-icon-default-fullname">Category <span class="validsign">*</span></label>
-                                    <div class="input-field"  [class.error]="Equipment.controls['categoryId'].dirty && Equipment.hasError('required','categoryId')" >
+                                    <div class="input-field"  [class.error]="EquipmentForm.controls['categoryId'].dirty && EquipmentForm.hasError('required','categoryId')" >
                       
                     
-                                      <select id="select2"  class="  form-control " formControlName="categoryId">
+                                      <!-- <select id="select2"  class="  form-control " formControlName="categoryId">
                                         <option value="">Select an option</option>
                                         <option *ngFor="let option of Categorys " [value]="option.categoryId">{{ option.name }}</option>
-                                      </select>
+                                      </select> -->
+                                      <ng-select  
+                                      formControlName="categoryId"
+                                              bindLabel="name" 
+                                              bindValue="id" 
+                                              >
+                                              <ng-option value="">Select an option</ng-option>
+                                              <ng-option *ngFor="let option of Categorys " [value]="option.categoryId">{{ option.name }}</ng-option>
+                                          </ng-select>
                                     </div>
                                     <small class="text-danger" *ngIf="Category.errors?.['required'] && (Category.touched || Category.dirty)">Category is required. </small>
 
@@ -101,7 +128,7 @@
                                   </div>
                                   <div class="mb-3 col-md-4">
                                     <label class="form-label" for="basic-icon-default-fullname">Retail Price <span class="validsign">*</span></label>
-                                    <div class="input-field"  [class.error]="Equipment.controls['categoryId'].dirty && Equipment.hasError('required','categoryId')" >
+                                    <div class="input-field"  [class.error]="EquipmentForm.controls['retail'].dirty && EquipmentForm.hasError('required','retail')" >
                                         <div class="input-group input-group-merge ">
 
                                         <span id="basic-icon-default-fullname2" class="input-group-text"
@@ -222,12 +249,8 @@
                                       ></textarea>
                                     </div>
                                   </div>
-
-
-
-                                  </div>
-
-                    
+                                  
+                                  </div>                  
                               </div>
                             </div>
                           </div>

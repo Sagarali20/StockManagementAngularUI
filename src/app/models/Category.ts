@@ -1,4 +1,5 @@
 export class Category{
     Id!:number;
-    Name! :string ;
+    categoryId!:string;
+    name! :string ;
 }
