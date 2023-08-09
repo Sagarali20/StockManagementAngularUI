@@ -2,7 +2,6 @@ export interface Equipment {
     id:number;
     categoryId: string;
     name: string;
-    description: string;
     sku: string;
     retail: number;
     wholeSalePrice: number;

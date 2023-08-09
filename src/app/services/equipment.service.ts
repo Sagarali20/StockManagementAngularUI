@@ -23,6 +23,6 @@ export class EquipmentService {
   }
 
   deleteEquipment(id: number) {
-    return this.http.post(this.baseUrl+ '/delete-equipment?id=' + id, null); // Use null or a request body if needed
+    return this.http.post<any>(this.baseUrl+ '/delete-equipment?id=' + id, null); // Use null or a request body if needed
   }
 }

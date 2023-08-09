@@ -1,7 +1,8 @@
 <div class="container"> 
-    <button type="button"class="btn btn-primary mt-1 fa fa-plus" style="float: right;" data-bs-toggle="modal" data-bs-target="#backDropModal">
+    <button type="button"class="btn btn-primary mt-1 fa fa-plus" style="float: right;" (click)="AddClick()" #openbutton data-bs-toggle="modal" data-bs-target="#backDropModal"   >
       New
      </button>
+
      </div>
       <div class="container-xxl flex-grow-1 container-p-y">
         <div class="card" style="margin-top: 15px;">
@@ -38,7 +39,7 @@
 
         
                   <td>
-                    <button type="button" class="btn  edit fa fa-edit"   ></button>
+                    <button type="button" class="btn  edit fa fa-edit" (click)="EditClick(item)"   ></button>
 
                     <button type="button" class="btn  delete fa fa-trash" (click)="DeleteClick(item.id)"  ></button>
                   </td>
@@ -60,7 +61,7 @@
                     <form  [formGroup]="EquipmentForm" (ngSubmit)="SaveProduct()">
         
                     <div class="modal-header">
-                      <h5 class="modal-title" id="backDropModalTitle">Add</h5>
+                      <h5 class="modal-title" id="backDropModalTitle">{{Modeltitle}}</h5>
                       <button
                         type="button"
                         class="btn-close"
@@ -270,6 +271,8 @@
               </div>
             </div>
           </div>
-    
+          <div style="float: right;">
+            <pagination [totalItems]="50" [maxSize]="maxSize" [itemsPerPage]="itemsPerPage"  (pageChanged)="pageChanged($event)"></pagination>
+          </div>
     </div>
     

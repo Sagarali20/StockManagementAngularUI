@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { empty } from 'rxjs';
 import SwalAlert from 'src/app/helpers/SwalAlert';
 import validateForm from 'src/app/helpers/validationform';
@@ -17,51 +19,111 @@ declare var $: any;
 export class ProductComponent implements OnInit  {
 
   @ViewChild('closebutton') closebutton: any;
-
+  @ViewChild('openbutton') openbutton: any;
+  Modeltitle = "";
   Categorys: Category[] = [];
-
   Equipment!:Equipment;
-
   Equipments:Equipment[]=[]
+  EquipmentId=0;
 
+  items: any[] = []; // Your list of items to paginate
+  currentpage = 1;   // Current page
+  itemsPerPage = 15;  
+  maxSize = 3;
 
-
-
-  testall : string="";
-
-
-  constructor(private categoryservice: CategoryService,private equipmentservice:EquipmentService)
+  constructor(private categoryservice: CategoryService,private equipmentservice:EquipmentService,private router: Router, private route: ActivatedRoute)
   {
+    this.route.queryParams.subscribe(params => {
+      alert(params['page']);
+      this.currentpage=params['page'];
+      this.updateUrl();
+
+    });
 
   }
+
+
   ngOnInit(): void {
 
     this.RefreshPage();
     this.Categoryload();
 
+  }
+  pageChanged(event: PageChangedEvent): void {
+    this.currentpage=event.page;
+    this.updateUrl();
 
   }
+
+
+  updateUrl(): void {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { page: this.currentpage },
+      queryParamsHandling: 'merge'
+    });
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   SaveProduct()
   {
     if(this.EquipmentForm.valid)
     {
+     
       this.Equipment = {
 
-        id: parseFloat(this.EquipmentForm.value.id!),
-        isActive: this.EquipmentForm.value.IsActive!,
+        id: parseFloat(this.EquipmentForm.value.id || '0'),
+        isActive: !!this.EquipmentForm.value.IsActive,
         barcode: this.EquipmentForm.value.barcode!,
         categoryId: this.EquipmentForm.value.categoryId!,
         comments: this.EquipmentForm.value.comments!,
-        description: this.EquipmentForm.value.description!,
-        localCode: this.EquipmentForm.value.localCode!,
+        localCode: this.EquipmentForm.value.localCode || '',
         name: this.EquipmentForm.value.name!,
         note: this.EquipmentForm.value.note!,
         rackNo: this.EquipmentForm.value.rackNo!,
-        retail: parseFloat(this.EquipmentForm.value.retail!),
+        retail: parseFloat(this.EquipmentForm.value.retail || '0'),
         sku: this.EquipmentForm.value.sku!,
         unit: this.EquipmentForm.value.unit!,
-        wholeSalePrice: parseFloat(this.EquipmentForm.value.wholeSalePrice!)
+        wholeSalePrice: parseFloat(this.EquipmentForm.value.wholeSalePrice || '0')
       };
 
       console.log(this.Equipment);
@@ -93,6 +155,42 @@ export class ProductComponent implements OnInit  {
     }
     
   }
+
+  AddClick()
+  {
+    this.Modeltitle="Add product";
+    this.EquipmentForm.reset();
+    this.EquipmentForm.controls["categoryId"].setValue("");
+
+
+  }
+
+  EditClick(item: any) {
+
+    this.openbutton.nativeElement.click();
+    this.Modeltitle="Edit Product"
+    this.EquipmentForm.controls["id"].setValue(item.id);
+    this.EquipmentForm.controls["name"].setValue(item.name);
+    this.EquipmentForm.controls["categoryId"].setValue(item.categoryId);
+    this.EquipmentForm.controls["sku"].setValue(item.sku);
+    this.EquipmentForm.controls["retail"].setValue(item.retail);
+    this.EquipmentForm.controls["wholeSalePrice"].setValue(item.wholeSalePrice);
+    this.EquipmentForm.controls["unit"].setValue(item.unit);
+    this.EquipmentForm.controls["localCode"].setValue(item.localCode);
+    this.EquipmentForm.controls["barcode"].setValue(item.barcode);
+    this.EquipmentForm.controls["rackNo"].setValue(item.rackNo);
+    this.EquipmentForm.controls["IsActive"].setValue(item.isActive);
+    this.EquipmentForm.controls["note"].setValue(item.note);
+
+
+    // this.fromValue.controls["id"].setValue(item.id);
+    // this.fromValue.controls["name"].setValue(item.name);
+    // this.fromValue.controls["title"].setValue(item.title);
+    // this.fromValue.controls["address"].setValue(item.address);
+    // this.fromValue.controls["phone"].setValue(item.phone);
+    //this.Address=item.address;
+    console.log(item.name);
+  }
   async DeleteClick(item: any) {
   
     if(await SwalAlert.IsDelete())
@@ -102,7 +200,7 @@ export class ProductComponent implements OnInit  {
         next:(async res=>{
 
           console.log(res);
-          if(res)
+          if(res.result)
           {
             this.RefreshPage();
             SwalAlert.DeleteMessage();
@@ -144,17 +242,15 @@ export class ProductComponent implements OnInit  {
   EquipmentForm= new FormGroup({
     id: new FormControl(),
     name: new FormControl("",[Validators.required]),
-    description: new FormControl(""),
     categoryId: new FormControl("",[Validators.required]),
     sku: new FormControl(""),
     retail: new FormControl("",[Validators.required, Validators.pattern('^[0-9]*$')]),
-    repcost: new FormControl(""),
     wholeSalePrice: new FormControl("",[Validators.pattern('^[0-9]*$')]),
     unit: new FormControl(""),
     localCode: new FormControl(""),
     barcode: new FormControl(""),
-    comments: new FormControl(""),
-    note: new FormControl(""),      
+    comments: new FormControl(),
+    note: new FormControl(),      
     rackNo: new FormControl(""),
      IsActive : new FormControl(true),
   })

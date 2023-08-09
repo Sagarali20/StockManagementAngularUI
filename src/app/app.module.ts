@@ -17,6 +17,9 @@ import { DashboarduiComponent } from './components/dashboardui/dashboardui.compo
 import { CategoryComponent } from './components/Admin/pages/category/category.component';
 import { ProductComponent } from './components/Admin/pages/product/product.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+
 
 
 
@@ -38,7 +41,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
     HttpClientModule,
     ReactiveFormsModule,
     NgToastModule,
-    NgSelectModule
+    NgSelectModule,
+    TooltipModule.forRoot(),
+    PaginationModule.forRoot()
     
   ],
   providers: [{
