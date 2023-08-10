@@ -25,4 +25,10 @@ export class EquipmentService {
   deleteEquipment(id: number) {
     return this.http.post<any>(this.baseUrl+ '/delete-equipment?id=' + id, null); // Use null or a request body if needed
   }
+
+  FilterEquipment(Obj:any)
+  {
+     return this.http.post<any>(`${this.baseUrl}/getall-equipment`,Obj);
+  }
+
 }

@@ -2,11 +2,12 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
-import { empty } from 'rxjs';
+import { empty, filter } from 'rxjs';
 import SwalAlert from 'src/app/helpers/SwalAlert';
 import validateForm from 'src/app/helpers/validationform';
 import { Category } from 'src/app/models/Category';
 import { Equipment } from 'src/app/models/Equipment';
+import { Stockfilter } from 'src/app/models/Stockfilter';
 import { CategoryService } from 'src/app/services/category.service';
 import { EquipmentService } from 'src/app/services/equipment.service';
 declare var $: any;
@@ -20,28 +21,26 @@ export class ProductComponent implements OnInit  {
 
   @ViewChild('closebutton') closebutton: any;
   @ViewChild('openbutton') openbutton: any;
+  @ViewChild('pageclick') pageclick: any;
+
   Modeltitle = "";
+  EquipmentId=0;
   Categorys: Category[] = [];
   Equipment!:Equipment;
   Equipments:Equipment[]=[]
-  EquipmentId=0;
 
-  items: any[] = []; // Your list of items to paginate
-  currentpage = 1;   // Current page
+  Stockfilter: Stockfilter = new Stockfilter;
+
+
+  currentPage = 1;   // Current page
   itemsPerPage = 15;  
   maxSize = 3;
+  p=0;
 
   constructor(private categoryservice: CategoryService,private equipmentservice:EquipmentService,private router: Router, private route: ActivatedRoute)
   {
-    this.route.queryParams.subscribe(params => {
-      alert(params['page']);
-      this.currentpage=params['page'];
-      this.updateUrl();
-
-    });
 
   }
-
 
   ngOnInit(): void {
 
@@ -49,39 +48,42 @@ export class ProductComponent implements OnInit  {
     this.Categoryload();
 
   }
-  pageChanged(event: PageChangedEvent): void {
-    this.currentpage=event.page;
-    this.updateUrl();
+
+  ngAfterViewInit()
+  {
+    this.route.queryParams.subscribe(params => {
+
+    });
 
   }
+  pageChanged(event: PageChangedEvent): void {
+    this.Stockfilter.PageNo  = event.page;
+
+    // console.log(this.Stockfilter.PageNo);
 
 
-  updateUrl(): void {
+    this.equipmentservice.FilterEquipment(this.Stockfilter).subscribe({
+      next:(async res=>{
+        console.log(res);
+        if(res.result)
+        {
+
+
+        }
+      }),
+      error:(err=>{
+           console.log(err.error.message)
+      })
+    })
+
+  }
+  updateUrl(dd:any): void {
     this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: { page: this.currentpage },
+      queryParams: { page: dd },
       queryParamsHandling: 'merge'
     });
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

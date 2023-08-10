@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { User } from './models/User';
 import { NgToastModule } from 'ng-angular-popup'
@@ -42,6 +42,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     ReactiveFormsModule,
     NgToastModule,
     NgSelectModule,
+    FormsModule,
     TooltipModule.forRoot(),
     PaginationModule.forRoot()
     
