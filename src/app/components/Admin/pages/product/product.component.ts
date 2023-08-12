@@ -33,7 +33,8 @@ export class ProductComponent implements OnInit  {
 
 
   currentPage = 1;   // Current page
-  itemsPerPage = 15;  
+  itemsPerPage = 15;
+  totalitem=0;
   maxSize = 3;
   p=0;
 
@@ -43,6 +44,8 @@ export class ProductComponent implements OnInit  {
   }
 
   ngOnInit(): void {
+
+    this.Stockfilter.PageNo=1;
 
     this.RefreshPage();
     this.Categoryload();
@@ -60,23 +63,13 @@ export class ProductComponent implements OnInit  {
     this.Stockfilter.PageNo  = event.page;
 
     // console.log(this.Stockfilter.PageNo);
-
-
-    this.equipmentservice.FilterEquipment(this.Stockfilter).subscribe({
-      next:(async res=>{
-        console.log(res);
-        if(res.result)
-        {
-
-
-        }
-      }),
-      error:(err=>{
-           console.log(err.error.message)
-      })
-    })
+    this.RefreshPage();
 
   }
+
+
+
+
   updateUrl(dd:any): void {
     this.router.navigate([], {
       relativeTo: this.route,
@@ -84,23 +77,6 @@ export class ProductComponent implements OnInit  {
       queryParamsHandling: 'merge'
     });
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -221,10 +197,21 @@ export class ProductComponent implements OnInit  {
 
   RefreshPage()
   {
-    this.equipmentservice.GetAllEquipment().subscribe(res =>{
-      this.Equipments=res.equipment;
-      console.log(this.Equipments);
+    // this.equipmentservice.GetAllEquipment().subscribe(res =>{
+    //   this.Equipments=res.equipment;
+    //   console.log(this.Equipments);
 
+    // })
+
+    this.equipmentservice.FilterEquipment(this.Stockfilter).subscribe({
+      next:(async res=>{
+        console.log(res.equipmentlist);
+        this.Equipments=res.equipmentlist;
+        this.totalitem=res.equipmentlist.length;
+      }),
+      error:(err=>{
+           console.log(err.error.message)
+      })
     })
 
   }
@@ -255,6 +242,7 @@ export class ProductComponent implements OnInit  {
     note: new FormControl(),      
     rackNo: new FormControl(""),
      IsActive : new FormControl(true),
+
   })
 
  

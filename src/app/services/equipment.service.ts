@@ -28,6 +28,10 @@ export class EquipmentService {
 
   FilterEquipment(Obj:any)
   {
+
+    console.log("satart");
+    console.log(Obj);
+
      return this.http.post<any>(`${this.baseUrl}/getall-equipment`,Obj);
   }
 
