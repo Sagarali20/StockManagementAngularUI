@@ -12,5 +12,7 @@ export interface Equipment {
     note: string;
     rackNo: string;
     isActive: boolean;
+    categoryName:string;
+
   }
   

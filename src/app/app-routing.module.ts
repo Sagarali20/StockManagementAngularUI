@@ -8,6 +8,7 @@ import { DashboardComponent } from './components/Admin/dashboard/dashboard.compo
 import { DashboarduiComponent } from './components/dashboardui/dashboardui.component';
 import { CategoryComponent } from './components/Admin/pages/category/category.component';
 import { ProductComponent } from './components/Admin/pages/product/product.component';
+import { ProductdetailsComponent } from './components/Admin/pages/productdetails/productdetails.component';
 
 const routes: Routes = [
   
@@ -18,26 +19,33 @@ const routes: Routes = [
   {path:'dashboard', component:DashboardComponent,
   children:[
        {
-         path:'alluser',
-         component:AllusersComponent,
+          path:'alluser',
+          component:AllusersComponent,
           canActivate:[AuthGuard]
         },
         {
-          path:'category',
-          component:CategoryComponent,
+           path:'category',
+           component:CategoryComponent,
            canActivate:[AuthGuard]
          },
          {
-          path:'product',
-          component:ProductComponent,
+           path:'product',
+           component:ProductComponent,
            canActivate:[AuthGuard]
          },
-         
-        {
-          path:'',
-          component:DashboarduiComponent,
+         {
+           path: 'product/details/:id', 
+           component: ProductdetailsComponent,
            canActivate:[AuthGuard]
-         }
+
+          },       
+         {
+           path:'',
+           component:DashboarduiComponent,
+           canActivate:[AuthGuard]
+          }
+
+
   ],
       canActivate:[AuthGuard]
 },

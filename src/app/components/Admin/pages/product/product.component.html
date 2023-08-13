@@ -1,10 +1,40 @@
 <div class="container"> 
-    <button type="button"class="btn btn-primary mt-1 fa fa-plus" style="float: right;" (click)="AddClick()" #openbutton data-bs-toggle="modal" data-bs-target="#backDropModal"   >
-      New
-     </button>
+
+    <div class="row  mt-2">
+      <div class="col-md-3">
+            <div class="input-group input-group-merge ">
+
+
+          <input
+           #Searchval
+           (keyup)="onKeyUp($event)"
+            type="text"
+            min="0"
+            class="form-control"
+            id="basic-icon-default-fullname"
+            placeholder="Search text..."
+            aria-label="John Doe"
+            aria-describedby="basic-icon-default-fullname2"
+          />
+          <button id="basic-icon-default-fullname2" (click)="Search(Searchval.value)" class="input-group-text"
+          ><i class="fa fa-search"></i
+        ></button>
+        </div>
+      </div>
+
+      <div class="col-md-9">
+
+        <button type="button"class="btn btn-primary fa fa-plus" style="float: right;" (click)="AddClick()" #openbutton data-bs-toggle="modal" data-bs-target="#backDropModal"   >
+          New
+        </button>
+
+      </div>
+
+    </div>
+
 
      </div>
-      <div class="container-xxl flex-grow-1 container-p-y">
+      <div class="container-xxl flex-grow-1">
         <div class="card" style="margin-top: 15px;">
           <h5 class="card-header">Products</h5>
           <div class="table-responsive text-nowrap">
@@ -27,9 +57,11 @@
               </thead>
               <tbody class="table-border-bottom-0">
                <tr *ngFor="let item of Equipments let i = index">
-                  <td>{{i+1}}</td>             
-                  <td>{{item.name}}</td> 
-                  <td>{{item.categoryId}}</td> 
+                  <td>{{i+1}}</td> 
+                  
+            
+               <td><a routerLink="/dashboard/product/details/{{item.id}}" [routerLinkActive]="['router-link-active']">{{item.name}} </a></td>
+                  <td>{{item.categoryName}}</td> 
                   <td>{{item.sku}}</td> 
                   <td>{{item.localCode}}</td> 
                   <td>{{item.rackNo}}</td> 
@@ -273,7 +305,7 @@
           </div>
           <div style="float: right;">
 
-            <pagination [totalItems]="totalitem" [maxSize]="maxSize" [itemsPerPage]="itemsPerPage"  [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
+            <pagination [totalItems]="totalitem" [maxSize]="maxSize" [itemsPerPage]="itemsPerPage"  (pageChanged)="pageChanged($event)"></pagination>
           </div>
     </div>
     

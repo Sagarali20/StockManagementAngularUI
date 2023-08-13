@@ -19,6 +19,7 @@ import { ProductComponent } from './components/Admin/pages/product/product.compo
 import { NgSelectModule } from '@ng-select/ng-select';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ProductdetailsComponent } from './components/Admin/pages/productdetails/productdetails.component';
 
 
 
@@ -34,6 +35,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     DashboarduiComponent,
     CategoryComponent,
     ProductComponent,
+    ProductdetailsComponent,
   ],
   imports: [
     BrowserModule,

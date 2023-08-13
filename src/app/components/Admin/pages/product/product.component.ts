@@ -10,8 +10,6 @@ import { Equipment } from 'src/app/models/Equipment';
 import { Stockfilter } from 'src/app/models/Stockfilter';
 import { CategoryService } from 'src/app/services/category.service';
 import { EquipmentService } from 'src/app/services/equipment.service';
-declare var $: any;
-
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -33,10 +31,11 @@ export class ProductComponent implements OnInit  {
 
 
   currentPage = 1;   // Current page
-  itemsPerPage = 15;
+  itemsPerPage = this.Stockfilter.PageSize;
   totalitem=0;
-  maxSize = 3;
-  p=0;
+  maxSize = 3; 
+  asciiValue!: number;
+
 
   constructor(private categoryservice: CategoryService,private equipmentservice:EquipmentService,private router: Router, private route: ActivatedRoute)
   {
@@ -46,19 +45,37 @@ export class ProductComponent implements OnInit  {
   ngOnInit(): void {
 
     this.Stockfilter.PageNo=1;
-
     this.RefreshPage();
     this.Categoryload();
 
   }
 
-  ngAfterViewInit()
-  {
-    this.route.queryParams.subscribe(params => {
+  Search(Search: any) {
+    this.Stockfilter.PageNo=1;
+    this.Stockfilter.SearchText=Search;
+    this.RefreshPage();
+    };
 
-    });
+    onKeyUp(event: KeyboardEvent): void {
+      const inputValue = (event.target as HTMLInputElement).value;
+      if(event.keyCode ===13 || inputValue ==="")
+      {
+        this.Stockfilter.PageNo=1;
+         this.Stockfilter.SearchText=inputValue;
+        this.RefreshPage();
+      }
+    }
+    goToDetails(id: number): void {
+      this.router.navigate(['/details', id]);
+    }
 
-  }
+  // ngAfterViewInit()
+  // {
+  //   this.route.queryParams.subscribe(params => {
+
+  //   });
+
+  // }
   pageChanged(event: PageChangedEvent): void {
     this.Stockfilter.PageNo  = event.page;
 
@@ -68,15 +85,13 @@ export class ProductComponent implements OnInit  {
   }
 
 
-
-
-  updateUrl(dd:any): void {
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: { page: dd },
-      queryParamsHandling: 'merge'
-    });
-  }
+  // updateUrl(dd:any): void {
+  //   this.router.navigate([], {
+  //     relativeTo: this.route,
+  //     queryParams: { page: dd },
+  //     queryParamsHandling: 'merge'
+  //   });
+  // }
 
 
 
@@ -101,7 +116,8 @@ export class ProductComponent implements OnInit  {
         retail: parseFloat(this.EquipmentForm.value.retail || '0'),
         sku: this.EquipmentForm.value.sku!,
         unit: this.EquipmentForm.value.unit!,
-        wholeSalePrice: parseFloat(this.EquipmentForm.value.wholeSalePrice || '0')
+        wholeSalePrice: parseFloat(this.EquipmentForm.value.wholeSalePrice || '0'),
+        categoryName:""
       };
 
       console.log(this.Equipment);
@@ -207,7 +223,7 @@ export class ProductComponent implements OnInit  {
       next:(async res=>{
         console.log(res.equipmentlist);
         this.Equipments=res.equipmentlist;
-        this.totalitem=res.equipmentlist.length;
+        this.totalitem=res.count;
       }),
       error:(err=>{
            console.log(err.error.message)
@@ -241,7 +257,8 @@ export class ProductComponent implements OnInit  {
     comments: new FormControl(),
     note: new FormControl(),      
     rackNo: new FormControl(""),
-     IsActive : new FormControl(true),
+     IsActive : new FormControl(true)
+
 
   })
 
