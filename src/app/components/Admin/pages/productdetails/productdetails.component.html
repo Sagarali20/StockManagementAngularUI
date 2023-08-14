@@ -15,45 +15,287 @@
             <ul class="list-group">
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 Product Name:
-                <span class="badge bg-primary">5</span>
+                <span class="">{{Equipment?.name}}</span>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 Category:
-                <span class="badge bg-success">2</span>
+                <span class="">{{Equipment?.categoryId}}</span>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center">
                SKU:
-                <span class="badge bg-danger rounded-pill">3</span>
+                <span class="">{{Equipment?.sku}}</span>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 Retail Price:
-                 <span class="badge bg-danger rounded-pill">3</span>
+                 <span class="">{{Equipment?.retail}}</span>
                </li>
                <li class="list-group-item d-flex justify-content-between align-items-center">
                 wholeSale Price:
-                 <span class="badge bg-danger rounded-pill">3</span>
+                 <span class="">{{Equipment?.wholeSalePrice}}</span>
                </li>
                <li class="list-group-item d-flex justify-content-between align-items-center">
                Unit:
-                 <span class="badge bg-danger rounded-pill">3</span>
+                 <span class="">{{Equipment?.unit}}</span>
                </li>
                <li class="list-group-item d-flex justify-content-between align-items-center">
                 Local Code:
-                 <span class="badge bg-danger rounded-pill">3</span>
+                 <span class="">{{Equipment?.localCode}}</span>
                </li>
                <li class="list-group-item d-flex justify-content-between align-items-center">
                 Rack No:
-                 <span class="badge bg-danger rounded-pill">3</span>
+                 <span class="  ">{{Equipment?.rackNo}}</span>
                </li>
             </ul>
           </div>
         </div>
         <div class="col-lg-6">
-            <button type="button"class="btn btn-primary fa fa-plus" style="float: right;margin-top: 10px;"  #openbutton data-bs-toggle="modal" data-bs-target="#backDropModal"   >
-                Add/Remove
-              </button>
+          <h5 class="card-header mt-3">Product history<button type="button"class="btn btn-primary fa fa-plus" style="float: right; padding: revert;"   #openbutton    data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasBackdrop"
+            aria-controls="offcanvasBackdrop"  >
+          </button></h5>
+
+
+
+
+
+          <div class="mt-3">
+            <!-- Button trigger modal -->
+            <!-- Modal -->
+            <div class="modal fade" id="backDropModal" data-bs-backdrop="static" tabindex="-1">
+              <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                  <form   >
+      
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="backDropModalTitle">Add/Remove from Inventory</h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body" >        
+                    <div class="row">
+                      <div class="col-xl">
+                          <div class="card mb-4">
+                            <div class="card-body">
+                              <div class="row">
+                                <div class="mb-3 col-md-12">
+                                  <label class="form-label" for="basic-icon-default-fullname">Product Name <span class="validsign">*</span></label>
+                                      <div class="input-field"  >
+
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="basic-icon-default-fullname"
+                                      placeholder="Enter name"
+                                      aria-label="John Doe"
+                                      aria-describedby="basic-icon-default-fullname2"
+                                    />
+                                  </div>
+                                  <!-- <small class="text-danger" *ngIf="Productname.errors?.['required'] && (Productname.touched || Productname.dirty)">Product name is required. </small> -->
+
+                                 </div>
+                                 <div class="mb-3 col-md-12">
+                                  <label class="form-label" for="basic-icon-default-fullname">Category <span class="validsign">*</span></label>
+                                  <div class="input-field"   >
+                    
+                  
+                                    <!-- <select id="select2"  class="  form-control " formControlName="categoryId">
+                                      <option value="">Select an option</option>
+                                      <option *ngFor="let option of Categorys " [value]="option.categoryId">{{ option.name }}</option>
+                                    </select> -->
+                                    <ng-select  
+                                            bindLabel="name" 
+                                            bindValue="id" 
+                                            >
+                                            <ng-option value="">Select an option</ng-option>
+                                            <!-- <ng-option *ngFor="let option of Categorys " [value]="option.categoryId">{{ option.name }}</ng-option> -->
+                                        </ng-select>
+                                  </div>
+                                  <!-- <small class="text-danger" *ngIf="Category.errors?.['required'] && (Category.touched || Category.dirty)">Category is required. </small> -->
+
+                                </div>
+                                <div class="mb-3 col-md-12">
+                                  <label class="form-label" for="basic-icon-default-fullname">SKU</label>
+                                  <div class="input-group input-group-merge ">
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="basic-icon-default-fullname"
+                                      placeholder="Enter sku"
+                                      aria-label="John Doe"
+                                      aria-describedby="basic-icon-default-fullname2"
+                                    />
+                                  </div>
+                                </div>
+                                <div class="mb-3 col-md-12">
+                                  <label class="form-label" for="basic-icon-default-fullname">Retail Price <span class="validsign">*</span></label>
+                                  <div class="input-field"   >
+                                      <div class="input-group input-group-merge ">
+
+                                      <span id="basic-icon-default-fullname2" class="input-group-text"
+                                      ><i class="fa fa-money"></i
+                                    ></span>
+                                    <input
+                                      type="number"
+                                      min="0"
+                                      class="form-control"
+                                      id="basic-icon-default-fullname"
+                                      placeholder="Enter retail price"
+                                      aria-label="John Doe"
+                                      aria-describedby="basic-icon-default-fullname2"
+                                    />
+                                  </div>
+                                  </div>
+                                  <!-- <small class="text-danger" *ngIf="Retailprice.errors?.['required'] && (Retailprice.touched || Retailprice.dirty)">Retail is required. </small> -->
+                                </div>
+
+          
+
+
+                                
+                                </div>                  
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+      
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" #closebutton data-bs-dismiss="modal">
+                      Close
+                    </button>
+                    <button type="submit" class="btn btn-primary"   >Save</button>
+                  </div>
+                </form>
+      
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="mt-3">
+
+              <div
+                class="offcanvas offcanvas-end"
+                tabindex="-1"
+                id="offcanvasBackdrop"
+                aria-labelledby="offcanvasBackdropLabel"
+              >
+                <div class="offcanvas-header">
+                  <h5 id="offcanvasBackdropLabel" class="offcanvas-title">Add/Remove from Inventory</h5>
+                  <button
+                    type="button"
+                    class="btn-close text-reset"
+                    data-bs-dismiss="offcanvas"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="offcanvas-body my-auto mx-0 ">
+                  <div class="row">
+                    <div class="col-xl">
+                        <div class="card mb-4">
+                          <div class="card-body">
+                            <div class="row">
+ 
+                               <div class="mb-3 col-md-12">
+                                <label class="form-label" for="basic-icon-default-fullname">Category <span class="validsign">*</span></label>
+                                <div class="input-field"   >
+                  
+                
+                                  <!-- <select id="select2"  class="  form-control " formControlName="categoryId">
+                                    <option value="">Select an option</option>
+                                    <option *ngFor="let option of Categorys " [value]="option.categoryId">{{ option.name }}</option>
+                                  </select> -->
+                                  <ng-select  
+                                          bindLabel="name" 
+                                          bindValue="id" 
+                                          >
+                                          <ng-option value="" aria-selected="">Select an option</ng-option>
+                                          <ng-option value="">Add</ng-option>
+                                          <ng-option value="">Release</ng-option>
+                                          <ng-option value="">Damage</ng-option>
+
+
+                                          <!-- <ng-option *ngFor="let option of Categorys " [value]="option.categoryId">{{ option.name }}</ng-option> -->
+                                      </ng-select>
+                                </div>
+                                <!-- <small class="text-danger" *ngIf="Category.errors?.['required'] && (Category.touched || Category.dirty)">Category is required. </small> -->
+
+                              </div>
+                              <div class="mb-3 col-md-12">
+                                <label class="form-label" for="basic-icon-default-fullname">Quantity <span class="validsign">*</span></label>
+                                <div class="input-field"   >
+                                    <div class="input-group input-group-merge ">
+                                  <input
+                                    type="number"
+                                    min="1"
+                                    class="form-control"
+                                    id="basic-icon-default-fullname"
+                                    placeholder="Enter retail price"
+                                    aria-label="John Doe"
+                                    aria-describedby="basic-icon-default-fullname2"
+                                  />
+                                </div>
+                                </div>
+                                <!-- <small class="text-danger" *ngIf="Retailprice.errors?.['required'] && (Retailprice.touched || Retailprice.dirty)">Retail is required. </small> -->
+                              </div>
+                              <div class="mb-3 col-md-12">
+                                <label class="form-label" for="basic-icon-default-fullname">Price <span class="validsign">*</span></label>
+                                <div class="input-field"   >
+                                    <div class="input-group input-group-merge ">
+                                  <input
+                                    type="number"
+                                    min="0"
+                                    class="form-control"
+                                    id="basic-icon-default-fullname"
+                                    placeholder="Enter retail price"
+                                    aria-label="John Doe"
+                                    aria-describedby="basic-icon-default-fullname2"
+                                  />
+                                </div>
+                                </div>
+                                <!-- <small class="text-danger" *ngIf="Retailprice.errors?.['required'] && (Retailprice.touched || Retailprice.dirty)">Retail is required. </small> -->
+                              </div>
+                              <div class="mb-3 col-md-12">
+                                <label class="form-label" for="basic-icon-default-message">Description</label>
+                                <div class="input-group input-group-merge">
+                                  <span id="basic-icon-default-message2" class="input-group-text"
+                                    ><i class="fa fa-comment"></i
+                                  ></span>
+                                  <textarea
+                                    id="basic-icon-default-message"
+                                    class="form-control"
+                                    formControlName="note"
+                                    placeholder="Hi, Do you have a moment to talk this product?"
+                                    aria-label="Hi, Do you have a moment to talk Joe?"
+                                    aria-describedby="basic-icon-default-message2"
+                                  ></textarea>
+                                </div>
+                              </div>
+        
+
+
+                              
+                              </div>                  
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="modal-footer footer">
+ 
+                  <button type="submit" class="btn btn-primary fa fa-floppy-o"> Save</button>
+                </div>
+              </div>
+            </div>
           </div>
         <!--/ List group with Badges & Pills -->
+
+
+                            <!-- Enable Scrolling & Backdrop Offcanvas -->
       </div>
     </div>
 

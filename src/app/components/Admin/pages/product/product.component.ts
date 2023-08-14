@@ -213,11 +213,6 @@ export class ProductComponent implements OnInit  {
 
   RefreshPage()
   {
-    // this.equipmentservice.GetAllEquipment().subscribe(res =>{
-    //   this.Equipments=res.equipment;
-    //   console.log(this.Equipments);
-
-    // })
 
     this.equipmentservice.FilterEquipment(this.Stockfilter).subscribe({
       next:(async res=>{
@@ -248,16 +243,16 @@ export class ProductComponent implements OnInit  {
     id: new FormControl(),
     name: new FormControl("",[Validators.required]),
     categoryId: new FormControl("",[Validators.required]),
-    sku: new FormControl(""),
+    sku: new FormControl(),
     retail: new FormControl("",[Validators.required, Validators.pattern('^[0-9]*$')]),
     wholeSalePrice: new FormControl("",[Validators.pattern('^[0-9]*$')]),
-    unit: new FormControl(""),
-    localCode: new FormControl(""),
-    barcode: new FormControl(""),
+    unit: new FormControl(),
+    localCode: new FormControl(),
+    barcode: new FormControl(),
     comments: new FormControl(),
-    note: new FormControl(),      
-    rackNo: new FormControl(""),
-     IsActive : new FormControl(true)
+    note: new FormControl(""),      
+    rackNo: new FormControl(),
+    IsActive : new FormControl(true)
 
 
   })
