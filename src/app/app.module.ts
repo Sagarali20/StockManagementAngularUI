@@ -20,6 +20,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ProductdetailsComponent } from './components/Admin/pages/productdetails/productdetails.component';
+import { UtcToLocalTimePipe } from './Utc-pipe/utc-to-local-time.pipe';
+import { UtcConverterService } from './Utc-converter/utc-converter.service';
 
 
 
@@ -36,6 +38,7 @@ import { ProductdetailsComponent } from './components/Admin/pages/productdetails
     CategoryComponent,
     ProductComponent,
     ProductdetailsComponent,
+    UtcToLocalTimePipe,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,7 @@ import { ProductdetailsComponent } from './components/Admin/pages/productdetails
   useClass:TokenInterceptor,
   multi:true
 
-  },User],
+  },User,UtcConverterService],
 
   bootstrap: [AppComponent]
 })

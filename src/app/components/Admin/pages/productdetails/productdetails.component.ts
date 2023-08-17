@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Location } from '@angular/common';
+import { DatePipe, Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { EquipmentService } from 'src/app/services/equipment.service';
 import { Equipment } from 'src/app/models/Equipment';
@@ -15,10 +15,12 @@ import { InventoryWarehouseService } from 'src/app/services/inventory-warehouse.
   selector: 'app-productdetails',
   templateUrl: './productdetails.component.html',
   styleUrls: ['./productdetails.component.scss']
+
 })
 export class ProductdetailsComponent implements OnInit {
   ptoductId: any;
   InventoryWarehouse!:InventoryWarehouse;
+  InventoryWarehouseList:InventoryWarehouse[]=[];
 
   Stockfilter: Stockfilter = new Stockfilter;
   @ViewChild('openbutton') openbutton: any;
@@ -26,8 +28,8 @@ export class ProductdetailsComponent implements OnInit {
 
   public damage:boolean=true;
 
-
   Equipment: Equipment | undefined;
+
   
 
   constructor(private location: Location,private activateroute:ActivatedRoute,private equipmentservice:EquipmentService,private InventoryWarehouseService:InventoryWarehouseService) {}
@@ -40,17 +42,9 @@ export class ProductdetailsComponent implements OnInit {
     this.equipmentservice.GetEquipmentbyId(this.ptoductId).subscribe({
       next:(async res=>{
        this.Equipment=res.equipment;
-       this.Warehouse.controls['equipmentid'].setValue(this.Equipment?.categoryId);
-
-      }),
-      error:(err=>{
-           console.log(err.error.message)
-      })
-    })
-
-    this.InventoryWarehouseService.GetAllWarehouse().subscribe({
-      next:(async res=>{
-        console.log(res);
+       console.log(res.equipment);
+       this.Warehouse.controls['equipmentid'].setValue(this.Equipment?.equipmentId);
+       this.RefreshPage();
 
 
       }),
@@ -58,9 +52,10 @@ export class ProductdetailsComponent implements OnInit {
            console.log(err.error.message)
       })
     })
- 
 
   }
+
+
   onDropdownChange(event: any) {
        if(event==="Damage")
        {         
@@ -79,11 +74,37 @@ export class ProductdetailsComponent implements OnInit {
    Warehouse= new FormGroup({
     type:new FormControl("",[Validators.required]),
     quantity:new FormControl("",[Validators.required, Validators.pattern('^[0-9]*$')]),
-    price :new FormControl(),
+    price :new FormControl(0),
     description : new FormControl(),
     equipmentid:new FormControl()
    }); 
 
+   RefreshPage()
+   {
+
+    this.InventoryWarehouseService.GetAllWarehouse(this.Equipment?.equipmentId).subscribe({
+      next:(async res=>{
+        this.InventoryWarehouseList=res.data;
+
+
+      }),
+      error:(err=>{
+           console.log(err.error.message)
+      })
+    })
+
+   }
+
+   OpenClick()
+   {
+
+    this.damage=true;
+    this.Warehouse.reset();
+    this.Warehouse.controls["type"].setValue("");
+    this.Warehouse.controls['price'].setValue(0);
+    this.Warehouse.controls['equipmentid'].setValue(this.Equipment?.equipmentId);
+
+   }
 
   SavaWarehouse()
   {
@@ -91,28 +112,29 @@ export class ProductdetailsComponent implements OnInit {
     if(this.Warehouse.valid)
     {
 
-      this.InventoryWarehouse = {
+      // this.InventoryWarehouse = {
 
-        type: this.Warehouse.value.type!,
-        quantity: parseFloat(this.Warehouse.value.quantity || '0') ,
-        description: this.Warehouse.value.description!,
-        price: parseFloat(this.Warehouse.value.price || '0'),
-        equipmentid: this.Warehouse.value.equipmentid!,
+      //   type: this.Warehouse.value.type!,
+      //   quantity: parseFloat(this.Warehouse.value.quantity || '0') ,
+      //   description: this.Warehouse.value.description!,
+      //   price: parseFloat(this.Warehouse.value.price || '0'),
+      //   equipmentid: this.Warehouse.value.equipmentid!,
+      //   lastUpdatedDate :null
 
-      };
+      // };
 
-      this.InventoryWarehouseService.SaveWarehouse(this.InventoryWarehouse).subscribe({
+      this.InventoryWarehouseService.SaveWarehouse(this.Warehouse.value).subscribe({
         next:(async res=>{
           if(res.result)
           {
   
             SwalAlert.SuccessMessage();
+            this.RefreshPage();
+
             this.Warehouse.reset();
             this.closebutton.nativeElement.click();
             this.Warehouse.controls["type"].setValue("");
-            this.Warehouse.controls['equipmentid'].setValue(this.Equipment?.categoryId);
-
-
+            this.Warehouse.controls['equipmentid'].setValue(this.Equipment?.equipmentId);
           }
         }),
         error:(err=>{
@@ -127,7 +149,6 @@ export class ProductdetailsComponent implements OnInit {
 
     }
   }
-
 
 
   get Type():FormControl{

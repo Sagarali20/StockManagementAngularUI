@@ -17,9 +17,11 @@ export class InventoryWarehouseService {
      return this.http.post<any>(`${this.baseUrl}/add-inventory-warehouse`,Obj);
   }
 
-  GetAllWarehouse()
+  GetAllWarehouse(id:any)
   {
-    return this.http.get<any>(`${this.baseUrl}/getall-inventoryWarehouse`);
+    console.log(id);
+    return this.http.get<any>(this.baseUrl+'/getall-inventoryWarehouse-by-guidid?id='+ id);
+
   }
 
 }

@@ -49,11 +49,40 @@
           </div>
         </div>
         <div class="col-lg-6">
-          <h5 class="card-header mt-3">Product history<button type="button"class="btn btn-primary fa fa-plus" style="float: right; padding: revert;"   #openbutton    data-bs-toggle="offcanvas"
+          <h5 class="card-header mt-3">Product history<button type="button"class="btn btn-primary fa fa-plus" (click)="OpenClick()" style="float: right; padding: revert;"   #openbutton    data-bs-toggle="offcanvas"
             data-bs-target="#offcanvasBackdrop"
             aria-controls="offcanvasBackdrop"  >
           </button></h5>
+          <div class="card"  style="margin-top: 15px;">
+            <div class="table-responsive text-nowrap">
+              <table class="table">
+                <thead>
+                  <tr> 
+                    <th>#</th>
+                    <th>Type</th>
+                    <th>Quantity</th>
+                    <th>price</th>
+                    <th>Create Date</th>
+ 
+                  </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                 <tr  *ngFor="let item of InventoryWarehouseList let i=index">
+                    <td>{{i+1}}</td> 
+                    
+              
+                    <td>{{item.type}}</td>
+                    <td>{{item.quantity}}</td> 
+                    <td>{{item.price}}</td> 
+                    <td>{{item.lastUpdatedDate | utcToLocalTime:'full' }}</td> 
 
+
+                  </tr>
+      
+                </tbody>
+              </table>
+            </div>
+          </div>
           
 
 

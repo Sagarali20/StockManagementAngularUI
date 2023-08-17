@@ -117,7 +117,8 @@ export class ProductComponent implements OnInit  {
         sku: this.EquipmentForm.value.sku!,
         unit: this.EquipmentForm.value.unit!,
         wholeSalePrice: parseFloat(this.EquipmentForm.value.wholeSalePrice || '0'),
-        categoryName:""
+        categoryName:"",
+        equipmentId:"00000000-0000-0000-0000-000000000000"
       };
 
       console.log(this.Equipment);

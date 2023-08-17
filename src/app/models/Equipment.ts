@@ -13,6 +13,7 @@ export interface Equipment {
     rackNo: string;
     isActive: boolean;
     categoryName:string;
+    equipmentId:string;
 
   }
   
