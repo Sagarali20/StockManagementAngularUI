@@ -150,6 +150,9 @@ export class ProductdetailsComponent implements OnInit {
     }
   }
 
+  isNegativeNumber(value: number): boolean {
+    return value < 0;
+  }
 
   get Type():FormControl{
     return this.Warehouse.get('type') as FormControl;

@@ -72,9 +72,9 @@
                     
               
                     <td>{{item.type}}</td>
-                    <td>{{item.quantity}}</td> 
+                    <td [ngClass]="isNegativeNumber(item.quantity) ? 'negative-number' : 'positive-number'">{{item.quantity}}</td> 
                     <td>{{item.price}}</td> 
-                    <td>{{item.lastUpdatedDate | utcToLocalTime:'full' }}</td> 
+                    <td>{{item.lastUpdatedDate | utcToLocalTime:'short' }}</td> 
 
 
                   </tr>
