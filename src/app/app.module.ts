@@ -22,6 +22,10 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ProductdetailsComponent } from './components/Admin/pages/productdetails/productdetails.component';
 import { UtcToLocalTimePipe } from './Utc-pipe/utc-to-local-time.pipe';
 import { UtcConverterService } from './Utc-converter/utc-converter.service';
+import { CustomerComponent } from './components/Admin/pages/customer/customer.component';
+import { ServiceComponent } from './components/Admin/pages/service/service.component';
+import { ReportComponent } from './components/Admin/pages/report/report.component';
+import { CustomeformComponent } from './components/Admin/pages/customeform/customeform.component';
 
 
 
@@ -39,6 +43,10 @@ import { UtcConverterService } from './Utc-converter/utc-converter.service';
     ProductComponent,
     ProductdetailsComponent,
     UtcToLocalTimePipe,
+    CustomerComponent,
+    ServiceComponent,
+    ReportComponent,
+    CustomeformComponent,
   ],
   imports: [
     BrowserModule,

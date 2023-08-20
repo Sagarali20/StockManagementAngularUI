@@ -9,6 +9,9 @@ import { DashboarduiComponent } from './components/dashboardui/dashboardui.compo
 import { CategoryComponent } from './components/Admin/pages/category/category.component';
 import { ProductComponent } from './components/Admin/pages/product/product.component';
 import { ProductdetailsComponent } from './components/Admin/pages/productdetails/productdetails.component';
+import { CustomerComponent } from './components/Admin/pages/customer/customer.component';
+import { ServiceComponent } from './components/Admin/pages/service/service.component';
+import { ReportComponent } from './components/Admin/pages/report/report.component';
 
 const routes: Routes = [
   
@@ -38,12 +41,30 @@ const routes: Routes = [
            component: ProductdetailsComponent,
            canActivate:[AuthGuard]
 
-          },       
-         {
-           path:'',
-           component:DashboarduiComponent,
-           canActivate:[AuthGuard]
-          }
+          },
+          {
+            path: 'customer', 
+            component: CustomerComponent,
+            canActivate:[AuthGuard]
+ 
+           },
+           {
+            path: 'service', 
+            component: ServiceComponent,
+            canActivate:[AuthGuard]
+ 
+           },  
+           {
+            path: 'report', 
+            component: ReportComponent,
+            canActivate:[AuthGuard]
+ 
+           },           
+           {
+            path:'',
+            component:DashboarduiComponent,
+            canActivate:[AuthGuard]
+            }
 
 
   ],
