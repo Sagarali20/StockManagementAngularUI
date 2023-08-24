@@ -11,7 +11,7 @@
           <div class="modal fade" id="backDropModal" data-bs-backdrop="static" tabindex="-1">
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
-                <form   >
+                <form  [formGroup]="CustomerForm" (ngSubmit)="SaveCustomer()"  >
     
                 <div class="modal-header">
                   <h5 class="modal-title" id="backDropModalTitle">{{Modeltitle}}</h5>
@@ -29,14 +29,32 @@
                           <div class="card-body">
                             <div class="row">
                               <div class="mb-3 col-md-4">
-                                <label class="form-label" for="basic-icon-default-fullname">Product Name <span class="validsign">*</span></label>
-                                    <div class="input-field"   >
+                                <label class="form-label" for="basic-icon-default-fullname">First Name <span class="validsign">*</span></label>
+                                    <div class="input-field" [class.error]="CustomerForm.controls['firstName'].dirty && CustomerForm.hasError('required','firstName')"  >
 
                                   <input
+                                  formControlName="firstName"
                                     type="text"
                                     class="form-control"
                                     id="basic-icon-default-fullname"
-                                    placeholder="Enter name"
+                                    placeholder="Enter first name"
+                                    aria-label="John Doe"
+                                    aria-describedby="basic-icon-default-fullname2"
+                                  />
+                                </div>
+                                <small class="text-danger" *ngIf="FirstName.errors?.['required'] && (FirstName.touched || FirstName.dirty)">First name is required. </small>
+
+                               </div>
+                               <div class="mb-3 col-md-4">
+                                <label class="form-label" for="basic-icon-default-fullname">Last Name </label>
+                                    <div class="input-field"   >
+
+                                  <input
+                                  formControlName="lastName"
+                                    type="text"
+                                    class="form-control"
+                                    id="basic-icon-default-fullname"
+                                    placeholder="Enter last name"
                                     aria-label="John Doe"
                                     aria-describedby="basic-icon-default-fullname2"
                                   />
@@ -45,154 +63,84 @@
 
                                </div>
                                <div class="mb-3 col-md-4">
-                                <label class="form-label" for="basic-icon-default-fullname">Category <span class="validsign">*</span></label>
-                                <div class="input-field"  >
+                                <label class="form-label" for="basic-icon-default-fullname">Cell Number <span class="validsign">*</span></label>
+                                    <div class="input-field" [class.error]="CustomerForm.controls['cellNumber'].dirty && CustomerForm.hasError('required','cellNumber')"  >
+                                  <input
+                                  formControlName="cellNumber"
+                                    type="text"
+                                    class="form-control"
+                                    id="basic-icon-default-fullname"
+                                    placeholder="Enter cell number"
+                                    aria-label="John Doe"
+                                    aria-describedby="basic-icon-default-fullname2"
+                                  />
+                                </div>
+                                <small class="text-danger" *ngIf="CellNumber.errors?.['required'] && (CellNumber.touched || CellNumber.dirty)">Cell number is required. </small>
+
+                               </div>
+
+       
+                               <div class="mb-3 col-md-4">
+                                <label class="form-label" for="basic-icon-default-fullname">Customer Type <span class="validsign">*</span></label>
+                                <div class="input-field" [class.error]="CustomerForm.controls['customerType'].dirty && CustomerForm.hasError('required','customerType')"  >
                   
                 
                                   <!-- <select id="select2"  class="  form-control " formControlName="categoryId">
                                     <option value="">Select an option</option>
                                     <option *ngFor="let option of Categorys " [value]="option.categoryId">{{ option.name }}</option>
                                   </select> -->
-                                  <ng-select  
+                                  <ng-select 
+                                  formControlName="customerType" 
                                           bindLabel="name" 
                                           bindValue="id" 
                                           >
                                           <ng-option value="">Select an option</ng-option>
-                                          <ng-option ></ng-option>
+                                          <ng-option value="General">General</ng-option>
+                                          <ng-option value="Vip">VIP</ng-option>
+
                                       </ng-select>
                                 </div>
-                                <!-- <small class="text-danger" *ngIf="Category.errors?.['required'] && (Category.touched || Category.dirty)">Category is required. </small> -->
+                                <small class="text-danger" *ngIf="CustomerType.errors?.['required'] && (CustomerType.touched || CustomerType.dirty)">Customer type is required. </small>
 
                               </div>
                               <div class="mb-3 col-md-4">
-                                <label class="form-label" for="basic-icon-default-fullname">SKU</label>
-                                <div class="input-group input-group-merge ">
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    id="basic-icon-default-fullname"
-                                    placeholder="Enter sku"
-                                    aria-label="John Doe"
-                                    aria-describedby="basic-icon-default-fullname2"
-                                  />
-                                </div>
-                              </div>
-                              <div class="mb-3 col-md-4">
-                                <label class="form-label" for="basic-icon-default-fullname">Retail Price <span class="validsign">*</span></label>
-                                <div class="input-field"   >
-                                    <div class="input-group input-group-merge ">
+                                <label class="form-label" for="basic-icon-default-fullname">Email Address </label>
+                                    <div class="input-field"   >
 
-                                    <span id="basic-icon-default-fullname2" class="input-group-text"
-                                    ><i class="fa fa-money"></i
-                                  ></span>
                                   <input
-                                    type="number"
-                                    min="0"
-                                    class="form-control"
-                                    id="basic-icon-default-fullname"
-                                    placeholder="Enter retail price"
-                                    aria-label="John Doe"
-                                    aria-describedby="basic-icon-default-fullname2"
-                                  />
-                                </div>
-                                </div>
-                                <small class="text-danger" >Retail is required. </small>
-                              </div>
-                              <div class="mb-3 col-md-4">
-                                <label class="form-label" for="basic-icon-default-fullname">Wholesale Price</label>
-                                <div class="input-group input-group-merge ">
-                                  <span id="basic-icon-default-fullname2" class="input-group-text"
-                                    ><i class="fa fa-money"></i
-                                  ></span>
-                                  <input
-                                    type="number"
-                                    min="0"
-                                    class="form-control"
-                                    id="basic-icon-default-fullname"
-                                    placeholder="Enter Wholesale price"
-                                    aria-label="John Doe"
-                                    aria-describedby="basic-icon-default-fullname2"
-                                  />
-                                </div>
-                              </div>
-                              <div class="mb-3 col-md-4">
-                                <label class="form-label" for="basic-icon-default-fullname">Unit</label>
-                                <div class="input-group input-group-merge ">
-    
-                                  <input
+                                  formControlName="emailAddress"
                                     type="text"
                                     class="form-control"
                                     id="basic-icon-default-fullname"
-                                    placeholder=""
+                                    placeholder="Enter email"
                                     aria-label="John Doe"
                                     aria-describedby="basic-icon-default-fullname2"
                                   />
                                 </div>
-                              </div>
-                              <div class="mb-3 col-md-4">
-                                <label class="form-label" for="basic-icon-default-fullname">Local Code</label>
-                                <div class="input-group input-group-merge ">
-            
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    id="basic-icon-default-fullname"
-                                    placeholder="Enter local code"
-                                    aria-label="John Doe"
-                                    aria-describedby="basic-icon-default-fullname2"
-                                  />
-                                </div>
-                              </div>
-                              <div class="mb-3 col-md-4">
-                                <label class="form-label" for="basic-icon-default-fullname">Barcode </label>
-                                <div class="input-group input-group-merge ">
-            
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    id="basic-icon-default-fullname"
-                                    placeholder="Enter barcode"
-                                    aria-label="John Doe"
-                                    aria-describedby="basic-icon-default-fullname2"
-                                  />
-                                </div>
-                              </div>
-                              <div class="mb-3 col-md-4">
-                                <label class="form-label" for="basic-icon-default-fullname">Rack No</label>
-                                <div class="input-group input-group-merge ">
-            
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    id="basic-icon-default-fullname"
-                                    placeholder="Enter Rack no"
-                                    aria-label="John Doe"
-                                    aria-describedby="basic-icon-default-fullname2"
-                                  />
-                                </div>
-                              </div>
-                              
-                              <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"  />
-                                <label class="form-check-label" for="defaultCheck1"> IsActive? </label>
-                              </div>
-                              
+                                <!-- <small class="text-danger" *ngIf="Productname.errors?.['required'] && (Productname.touched || Productname.dirty)">Product name is required. </small> -->
 
-                              <div class="mb-3">
-                                <label class="form-label" for="basic-icon-default-message">Notes</label>
+                               </div>
+                               <div class="mb-3">
+                                <label class="form-label" for="basic-icon-default-message">Address</label>
                                 <div class="input-group input-group-merge">
                                   <span id="basic-icon-default-message2" class="input-group-text"
-                                    ><i class="fa fa-comment"></i
+                                    ><i class="fa fa-home"></i
                                   ></span>
                                   <textarea
+                                    formControlName="address"
                                     id="basic-icon-default-message"
+                                    placeholder="Enter address..."
                                     class="form-control"
-                                    placeholder="Hi, Do you have a moment to talk this product?"
-                                    aria-label="Hi, Do you have a moment to talk Joe?"
+                                    aria-label="Enter address"
                                     aria-describedby="basic-icon-default-message2"
                                   ></textarea>
                                 </div>
                               </div>
+                              
+                              <div class="form-check mb-3">
+                                <input class="form-check-input" formControlName="isWholeSaler" type="checkbox" value="" id="defaultCheck1"  />
+                                <label class="form-check-label" for="defaultCheck1"> IsWholeSaler? </label>
+                              </div>                           
                               
                               </div>                  
                           </div>

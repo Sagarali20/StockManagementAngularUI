@@ -40,12 +40,10 @@ export class DashboarduiComponent implements OnInit {
     this.loadScript('assets/vendor/js/menu.js', () => {
       // Callback after loading all three scripts
       this.loadScript('assets/vendor/libs/apex-charts/apexcharts.js', () => {
-        this.loadScript('assets/js/main.js', () => {
           // Callback after loading all three scripts
           this.loadScript('assets/js/dashboards-analytics.js', () => {
             // Callback after loading all three scripts
           });
-        });
       });
     });
   }

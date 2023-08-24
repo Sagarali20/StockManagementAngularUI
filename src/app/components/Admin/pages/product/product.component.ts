@@ -255,7 +255,6 @@ export class ProductComponent implements OnInit  {
     rackNo: new FormControl(),
     IsActive : new FormControl(true)
 
-
   })
 
  

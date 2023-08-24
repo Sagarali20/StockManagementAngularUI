@@ -3,19 +3,19 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import { TokenApiModel } from '../models/token-api.model';
 import { Observable } from 'rxjs';
+import BaseUrl from '../helpers/BaseUrl';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-   private baseUrl:string ='http://localhost:5275/api/User/';
+   private baseUrl:string =BaseUrl.Url;
   // private baseUrl:string ='http://192.168.1.106:82/api/User/';
 
 
   private userPayload:any;
 
   constructor(private http: HttpClient) {
-
     this.userPayload=this.deCodedToken();
     console.log("sagar");
 
@@ -24,13 +24,13 @@ export class AuthService {
 
   signUp(userObj:any)
   {
-     return this.http.post<any>(`${this.baseUrl}register`,userObj);
+     return this.http.post<any>(`${this.baseUrl}/api/User/register`,userObj);
 
   }
 
   logIn(loginobj:any)
   { 
-    return this.http.post<any>(`${this.baseUrl}authenticate`,loginobj);
+    return this.http.post<any>(`${this.baseUrl}/api/User/authenticate`,loginobj);
   }
 
   storeToken(tokenvalue:string)
@@ -80,7 +80,7 @@ export class AuthService {
   }
   renewtoken(tokenapi:TokenApiModel)
   { 
-     return this.http.post<TokenApiModel>(`${this.baseUrl}refresh`,tokenapi);
+     return this.http.post<TokenApiModel>(`${this.baseUrl}/api/User/refresh`,tokenapi);
   }
 
   // renewtoken(tokenApiModel: TokenApiModel): Observable<any> {

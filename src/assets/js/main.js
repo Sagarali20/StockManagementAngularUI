@@ -1,6 +1,3 @@
-/**
- * Main
- */
 
 'use strict';
 
@@ -117,17 +114,17 @@ let menu, animate;
   window.Helpers.setCollapsed(true, false);
 })();
 
-$( document ).ready(function() {
+// $( document ).ready(function() {
 
 
-  $("#toggle").click(function() {
+//   $("#toggle").click(function() {
    
-     $(".profileshow").toggle(); 
-   // $(".profileshow").addClass("add");
-    $(".profileshow").attr("data-bs-popper","static");
+//      $(".profileshow").toggle(); 
+//    // $(".profileshow").addClass("add");
+//     $(".profileshow").attr("data-bs-popper","static");
 
 
-  });
+//   });
 
 
-});
+// });

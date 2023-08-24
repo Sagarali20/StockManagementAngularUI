@@ -7,7 +7,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 
 export class CustomerComponent implements OnInit {
-
+  
   @ViewChild('customerForm') customerForm: any;
 
   ngOnInit(): void {
@@ -23,7 +23,6 @@ export class CustomerComponent implements OnInit {
   AddClick()
   {
     this.customerForm.AddClick();
-
   }
 
 

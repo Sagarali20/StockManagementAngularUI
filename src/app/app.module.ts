@@ -26,6 +26,7 @@ import { CustomerComponent } from './components/Admin/pages/customer/customer.co
 import { ServiceComponent } from './components/Admin/pages/service/service.component';
 import { ReportComponent } from './components/Admin/pages/report/report.component';
 import { CustomeformComponent } from './components/Admin/pages/customeform/customeform.component';
+import { XerrorComponent } from './components/Admin/pages/xerror/xerror.component';
 
 
 
@@ -47,6 +48,7 @@ import { CustomeformComponent } from './components/Admin/pages/customeform/custo
     ServiceComponent,
     ReportComponent,
     CustomeformComponent,
+    XerrorComponent,
   ],
   imports: [
     BrowserModule,
