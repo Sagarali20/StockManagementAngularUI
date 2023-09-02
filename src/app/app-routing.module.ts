@@ -12,6 +12,7 @@ import { ProductdetailsComponent } from './components/Admin/pages/productdetails
 import { CustomerComponent } from './components/Admin/pages/customer/customer.component';
 import { ServiceComponent } from './components/Admin/pages/service/service.component';
 import { ReportComponent } from './components/Admin/pages/report/report.component';
+import { XerrorComponent } from './components/Admin/pages/xerror/xerror.component';
 
 const routes: Routes = [
   
@@ -70,6 +71,7 @@ const routes: Routes = [
   ],
       canActivate:[AuthGuard]
 },
+{path:'**', component:XerrorComponent},
 
   // {path:'allusers', component:AllusersComponent,canActivate:[AuthGuard]}
 

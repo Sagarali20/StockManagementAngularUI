@@ -30,11 +30,12 @@ export class ProductComponent implements OnInit  {
   Stockfilter: Stockfilter = new Stockfilter;
 
 
-  currentPage = 1;   // Current page
+  currentPage = 3;   // Current page
   itemsPerPage = this.Stockfilter.PageSize;
   totalitem=0;
   maxSize = 3; 
   asciiValue!: number;
+  reloadpagenum!:number;
 
 
   constructor(private categoryservice: CategoryService,private equipmentservice:EquipmentService,private router: Router, private route: ActivatedRoute)
@@ -44,15 +45,23 @@ export class ProductComponent implements OnInit  {
 
   ngOnInit(): void {
 
+    this.route.queryParams.subscribe(params => {
+      const parameterValue = params['page'];
+     this.reloadpagenum=parameterValue;
+      alert(parameterValue);
+     });
     this.Stockfilter.PageNo=1;
     this.RefreshPage();
     this.Categoryload();
+
+    this.currentPage=3;
 
   }
 
   Search(Search: any) {
     this.Stockfilter.PageNo=1;
-    this.Stockfilter.SearchText=Search;
+    this.Stockfilter.SearchText=encodeURIComponent(Search);
+     console.log(this.Stockfilter);
     this.RefreshPage();
     };
 
@@ -71,9 +80,7 @@ export class ProductComponent implements OnInit  {
 
   // ngAfterViewInit()
   // {
-  //   this.route.queryParams.subscribe(params => {
-
-  //   });
+  //   this.currentPage=3;
 
   // }
   pageChanged(event: PageChangedEvent): void {
@@ -81,17 +88,20 @@ export class ProductComponent implements OnInit  {
 
     // console.log(this.Stockfilter.PageNo);
     this.RefreshPage();
+    
+
+    this.updateUrl(event.page);
 
   }
 
 
-  // updateUrl(dd:any): void {
-  //   this.router.navigate([], {
-  //     relativeTo: this.route,
-  //     queryParams: { page: dd },
-  //     queryParamsHandling: 'merge'
-  //   });
-  // }
+  updateUrl(page:any): void {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { page: page },
+      queryParamsHandling: 'merge'
+    });
+  }
 
 
 
@@ -214,12 +224,16 @@ export class ProductComponent implements OnInit  {
 
   RefreshPage()
   {
+    
 
     this.equipmentservice.FilterEquipment(this.Stockfilter).subscribe({
       next:(async res=>{
         console.log(res.equipmentlist);
         this.Equipments=res.equipmentlist;
         this.totalitem=res.count;
+        alert("res");
+        alert(this.reloadpagenum);
+
       }),
       error:(err=>{
            console.log(err.error.message)

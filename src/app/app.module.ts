@@ -27,6 +27,7 @@ import { ServiceComponent } from './components/Admin/pages/service/service.compo
 import { ReportComponent } from './components/Admin/pages/report/report.component';
 import { CustomeformComponent } from './components/Admin/pages/customeform/customeform.component';
 import { XerrorComponent } from './components/Admin/pages/xerror/xerror.component';
+import { SwitchComponent } from './components/Admin/pages/switch/switch.component';
 
 
 
@@ -49,6 +50,7 @@ import { XerrorComponent } from './components/Admin/pages/xerror/xerror.componen
     ReportComponent,
     CustomeformComponent,
     XerrorComponent,
+    SwitchComponent,
   ],
   imports: [
     BrowserModule,

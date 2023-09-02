@@ -29,7 +29,7 @@ export class EquipmentService {
 
   FilterEquipment(Obj:any)
   {
-
+      console.log(Obj);
      return this.http.post<any>(`${this.baseUrl}/api/inventory/getall-equipment`,Obj);
   }
 

@@ -296,16 +296,16 @@
                       </button>
                       <button type="submit" class="btn btn-primary"   >Save</button>
                     </div>
-                  </form>
-        
+                  </form>       
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div style="float: right;">
 
-            <pagination [totalItems]="totalitem" [maxSize]="maxSize" [itemsPerPage]="itemsPerPage"  (pageChanged)="pageChanged($event)"></pagination>
+          <div style="float:right;">
+            <pagination [totalItems]="totalitem"  [maxSize]="maxSize" [itemsPerPage]="itemsPerPage" [boundaryLinks]="true"  (pageChanged)="pageChanged($event)"></pagination>
           </div>
+
     </div>
     

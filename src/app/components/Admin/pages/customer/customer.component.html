@@ -3,6 +3,54 @@
     <button type="button"class="btn btn-primary fa fa-plus" style="float: right;" (click)="AddClick()" #openbutton data-bs-toggle="modal" data-bs-target="#backDropModal"   >
     New customer
   </button>
+
+
+</div>
+
+<div class="container-xxl flex-grow-1" style="margin-top: 55px;">
+  <div class="card" >
+    <h5 class="card-header">Customers</h5>
+    <div class="table-responsive text-nowrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Phone </th>
+            <th>Address</th>
+            <th>IsActive</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody class="table-border-bottom-0">
+         <tr *ngFor="let item of Customers let i = index">
+            <td>{{i+1}}</td>                 
+            <td><a routerLink="/dashboard/product/details/{{item.id}}" [routerLinkActive]="['router-link-active']">{{item.firstName}} </a></td>
+            <td>{{item.type}} </td> 
+            <td>{{item.phoneNumber}}</td> 
+            <td>{{item.address}}</td> 
+            <td>{{item.isActive}}</td> 
+            <td>
+              <h1>Angular Toggle Button</h1>
+
+              <p>The state is {{checked ? 'ON' : 'OFF'}}.</p>
+
+            </td>
+          </tr> 
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+<!-- 
+    <div style="float: right;">
+
+      <pagination [totalItems]="totalitem"  [maxSize]="maxSize" [itemsPerPage]="itemsPerPage" [boundaryLinks]="true"  (pageChanged)="pageChanged($event)"></pagination>
+    </div> -->
+
 </div>
 
 
