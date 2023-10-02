@@ -1,0 +1,10 @@
+.container-xxl.flex-grow-1, .container {
+    max-width: 1414px !important; 
+ }
+ .green-box {
+    position: absolute;
+    z-index: 2; /* green box will be above black box */
+    background: lightgreen;
+    width: 23%;
+    cursor: pointer;
+  }

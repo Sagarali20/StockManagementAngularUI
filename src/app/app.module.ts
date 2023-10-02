@@ -50,7 +50,7 @@ import { SwitchComponent } from './components/Admin/pages/switch/switch.componen
     ReportComponent,
     CustomeformComponent,
     XerrorComponent,
-    SwitchComponent,
+    SwitchComponent
   ],
   imports: [
     BrowserModule,
