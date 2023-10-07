@@ -16,5 +16,9 @@ export class SaleServiceService {
     return this.http.post<any>(this.baseUrl+'/api/customer/get-customer-by-search-name?searchText='+ Search, null);
 
   }
+  GetInvoiceId()
+  {
+    return this.http.post<any>(this.baseUrl+'/api/InvoiceService/get-invoice-id',null);
+  }
 
 }

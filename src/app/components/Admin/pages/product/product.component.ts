@@ -225,7 +225,6 @@ export class ProductComponent implements OnInit  {
   RefreshPage()
   {
     
-
     this.equipmentservice.FilterEquipment(this.Stockfilter).subscribe({
       next:(async res=>{
         console.log(res.equipmentlist);
@@ -245,11 +244,9 @@ export class ProductComponent implements OnInit  {
   Categoryload()
   {
     this.categoryservice.GetAllCategory().subscribe(res =>{
-
       this.Categorys=res.category;
      console.log(res.category);
      console.log(this.Categorys);
-
     });
 
   }

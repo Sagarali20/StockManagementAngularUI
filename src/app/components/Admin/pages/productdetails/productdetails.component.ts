@@ -86,7 +86,6 @@ export class ProductdetailsComponent implements OnInit {
       next:(async res=>{
         this.InventoryWarehouseList=res.data;
 
-
       }),
       error:(err=>{
            console.log(err.error.message)
