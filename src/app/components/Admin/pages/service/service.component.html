@@ -6,11 +6,8 @@
 
   <div class="modal fade" id="backDropModal" data-bs-backdrop="static" tabindex="-1">
     <div class="modal-dialog modal-xl">
-      <form [formGroup]="InvoiceForm" (ngSubmit)="AddInvoice()">
+      <form [formGroup]="InvoiceForm" >
       <div class="modal-content"   >
-
-
-
 
         <div class="modal-header">
           <h5 class="modal-title" id="backDropModalTitle">{{invoiceId}}</h5>
@@ -22,27 +19,21 @@
               <div class="card mb-4">
                 <div class="card-body">
                   <div class="row">
-
-
                     <div class="mb-3 col-md-3">
                       <label class="form-label" for="basic-icon-default-fullname">Select a Customer <span
                           class="validsign">*</span></label>
                       <div class="input-group input-group-merge ">
                         <input type="text" class="form-control" id="basic-icon-default-fullname" aria-label="John Doe"
-                          aria-describedby="basic-icon-default-fullname2" [(ngModel)]="searchQuery"
+                          aria-describedby="basic-icon-default-fullname2" formControlName="customerName"
                           (input)="onInputChange()" (focus)="onFocus()" />
-
                       </div>
-                      <ul *ngIf="showSuggestions===true" class="green-box" style="background-color: #f7f7f7;  border-radius: 5px; box-shadow: 0 5px 20px rgb(98 84 84 / 30%);
-
+                      <ul *ngIf="showSuggestions===true" class="green-box" style="background-color: #f7f7f7;  border-radius: 5px; box-shadow: 0 5px 20px rgb(98 84 84 / 30%); 
                               ">
                         <li *ngFor="let suggestion of suggestions" (click)="selectSuggestion(suggestion)">
                           {{ suggestion.firstName }} {{ suggestion.lastName }} ({{suggestion.phoneNumber}})
                         </li>
                       </ul>
                     </div>
-
-
                     <div class="mb-3 col-md-3">
                       <label class="form-label" for="basic-icon-default-fullname">Phone Number <span
                           class="validsign">*</span></label>
@@ -98,7 +89,7 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-12">
-              <table class="table table-bordered">
+              <table formArrayName="invoicedetails" class="table table-bordered">
                 <thead class="bg-danger text-white">
                   <tr>
                     <td>Name</td>
@@ -107,19 +98,16 @@
                     <td>Total Price</td>
                     <td>Action</td>
                   </tr>
-
                 </thead>
                 <tbody>
-
                 </tbody>
                 <tfoot>
                   <td colspan="5">
-                    <a class="btn btn-primary">[+]</a>
+                    <a class="plus btn btn-primary">[+]</a>
                   </td>
                 </tfoot>
               </table>
             </div>
-
           </div>
         </div>
         <div class="modal-footer">

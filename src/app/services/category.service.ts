@@ -24,7 +24,7 @@ export class CategoryService {
   }
 
   DeleteCategory(id:any): Observable<any> {
-    const url = `${this.baseUrl}/${id}`;
+    const url = `${this.baseUrl}/api/inventory/${id}`;
     return this.http.post<any>(url,id);
   }
   // {

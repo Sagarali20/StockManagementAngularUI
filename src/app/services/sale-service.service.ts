@@ -12,6 +12,7 @@ export class SaleServiceService {
 
   GetCustomerBySearch(Search:any)
   {
+
    // return this.http.post<any>(this.baseUrl+'/api/customer/get-customer-by-search-name?searchText='+ Search);
     return this.http.post<any>(this.baseUrl+'/api/customer/get-customer-by-search-name?searchText='+ Search, null);
 

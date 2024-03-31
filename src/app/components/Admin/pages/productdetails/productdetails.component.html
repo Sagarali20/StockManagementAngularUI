@@ -68,26 +68,16 @@
                 </thead>
                 <tbody class="table-border-bottom-0">
                  <tr  *ngFor="let item of InventoryWarehouseList let i=index">
-                    <td>{{i+1}}</td> 
-                    
-              
+                    <td>{{i+1}}</td>              
                     <td>{{item.type}}</td>
                     <td [ngClass]="isNegativeNumber(item.quantity) ? 'negative-number' : 'positive-number'">{{item.quantity}}</td> 
                     <td>{{item.price}}</td> 
                     <td>{{item.lastUpdatedDate | utcToLocalTime:'short' }}</td> 
-
-
                   </tr>
-      
                 </tbody>
               </table>
             </div>
           </div>
-          
-
-
-
-
 
       </div>
     </div>

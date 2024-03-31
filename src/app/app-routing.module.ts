@@ -16,7 +16,7 @@ import { XerrorComponent } from './components/Admin/pages/xerror/xerror.componen
 
 const routes: Routes = [
   
-   {path:'', redirectTo:'login', pathMatch:'full'},
+  {path:'', redirectTo:'login', pathMatch:'full'},
   {path:'login', component : LoginComponent},
   {path:'signup', component:SignupComponent},
 
@@ -41,25 +41,21 @@ const routes: Routes = [
            path: 'product/details/:id', 
            component: ProductdetailsComponent,
            canActivate:[AuthGuard]
-
           },
           {
             path: 'customer', 
             component: CustomerComponent,
             canActivate:[AuthGuard]
- 
            },
            {
             path: 'service', 
             component: ServiceComponent,
             canActivate:[AuthGuard]
- 
            },  
            {
             path: 'report', 
             component: ReportComponent,
             canActivate:[AuthGuard]
- 
            },           
            {
             path:'',
@@ -74,7 +70,6 @@ const routes: Routes = [
 {path:'**', component:XerrorComponent},
 
   // {path:'allusers', component:AllusersComponent,canActivate:[AuthGuard]}
-
 ];
 
 @NgModule({

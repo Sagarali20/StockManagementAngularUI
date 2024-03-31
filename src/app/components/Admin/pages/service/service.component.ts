@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Invoice } from 'src/app/models/Invoice';
 import { SaleServiceService } from 'src/app/services/sale-service.service';
 
@@ -15,8 +15,9 @@ export class ServiceComponent implements OnInit {
   showSuggestions: boolean = false;
   invoiceId:string='';
   invoice :Invoice = new Invoice();
+  formProductDetails!: FormArray<any>;
 
-  constructor(private SaleService:SaleServiceService ){}
+  constructor(private builder:FormBuilder, private SaleService:SaleServiceService ){}
 
   ngOnInit(): void {
      
@@ -27,7 +28,6 @@ export class ServiceComponent implements OnInit {
     this.SaleService.GetInvoiceId().subscribe({
       next:(async res=>{
         this.invoiceId=res.invoiceId;
-        this.InvoiceForm.controls['invoiceid'].setValue(this.invoiceId);
 
         console.log(this.invoiceId);
       }),
@@ -37,8 +37,11 @@ export class ServiceComponent implements OnInit {
     });  
   }
   onInputChange() {
-    if (this.searchQuery.length >= 1) {  
-      this.SaleService.GetCustomerBySearch(this.searchQuery).subscribe({
+
+    console.log(this.InvoiceForm.value.customerName!);
+    if (this.InvoiceForm.value.customerName!.length >= 1) {  
+  
+      this.SaleService.GetCustomerBySearch(this.InvoiceForm.value.customerName!).subscribe({
         next:(async res=>{
           console.log(res.customers);
           this.suggestions=res.customers;
@@ -62,10 +65,16 @@ export class ServiceComponent implements OnInit {
     this.showSuggestions = false;
     this.invoice.Email=suggestion.emailAddress;
     this.invoice.PhoneNumber=suggestion.phoneNumber;
+    this.InvoiceForm.controls['invoiceid'].setValue(this.invoiceId);
+    this.InvoiceForm.controls['customerName'].setValue(suggestion.firstName+" "+suggestion.lastName);
+    console.log(this.InvoiceForm.value.customerName);
+    this.invoice.Email=suggestion.email;
+    this.invoice.PhoneNumber=suggestion.phoneNumber
   }
 
-  InvoiceForm= new FormGroup({
+  InvoiceForm=this.builder.group({
    id:new FormControl(""),
+   customerName:new FormControl(""),
    invoiceid: new FormControl("",[Validators.required]),
    customerid:new FormControl("",[Validators.required]),
    amount : new FormControl("",[Validators.required]),
@@ -75,14 +84,20 @@ export class ServiceComponent implements OnInit {
    todaysadvance:new FormControl(),
    invoicedate : new FormControl(),
    paymenttype : new FormControl(),
+   email : new FormControl(),
    invoicedetails : new FormArray([])
   });
 
-  AddInvoice()
+  AddInvoiceDetails()
   {
-
+    this.formProductDetails=this.InvoiceForm.get("invoicedetails") as FormArray;
+    this.formProductDetails.push(this.GenerateRow)
   }
+  GenerateRow()
+  {
+    return this.builder.group({
 
-
+    });
+  }
 
 }

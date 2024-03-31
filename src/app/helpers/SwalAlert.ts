@@ -51,7 +51,6 @@ export default class SwalAlert{
     //   showConfirmButton: false,
     //   timer: 1500
     // })
-
     Swal.fire({
       toast: true,
       position: 'top',
@@ -61,7 +60,7 @@ export default class SwalAlert{
       showConfirmButton: false,
       timer: 3000 // Adjust the duration as needed (in milliseconds)
     });
-    
+
   }
   
 
