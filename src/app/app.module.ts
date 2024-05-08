@@ -68,7 +68,6 @@ import { SwitchComponent } from './components/Admin/pages/switch/switch.componen
   provide:HTTP_INTERCEPTORS,
   useClass:TokenInterceptor,
   multi:true
-
   },User,UtcConverterService],
 
   bootstrap: [AppComponent]

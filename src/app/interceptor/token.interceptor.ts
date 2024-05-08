@@ -25,9 +25,7 @@ export class TokenInterceptor implements HttpInterceptor {
       request=request.clone({
         setHeaders:{authorization:`Bearer ${myToken}`}
       });
-
     }
-
   return next.handle(request).pipe(
       catchError((err:any)=>{
         console.log(err);
@@ -47,7 +45,7 @@ export class TokenInterceptor implements HttpInterceptor {
             });
           }
         }
-        return throwError(()=>new Error("Some other error occured"));
+        return throwError(()=>new Error("Some other error ocncured"));
       })
     );
   }
@@ -73,7 +71,7 @@ export class TokenInterceptor implements HttpInterceptor {
           this.toast.warning({
             detail: "warning", summary: "Token is expried, Login again",
             type: 'error'
-          });
+          }); 
           this.router.navigate(['login']);
         })
       })

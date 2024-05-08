@@ -67,6 +67,7 @@ export class ServiceComponent implements OnInit {
     this.invoice.PhoneNumber=suggestion.phoneNumber;
     this.InvoiceForm.controls['invoiceid'].setValue(this.invoiceId);
     this.InvoiceForm.controls['customerName'].setValue(suggestion.firstName+" "+suggestion.lastName);
+    this.InvoiceForm.controls['phoneNumber'].setValue(suggestion.phoneNumber);
     console.log(this.InvoiceForm.value.customerName);
     this.invoice.Email=suggestion.email;
     this.invoice.PhoneNumber=suggestion.phoneNumber
@@ -84,6 +85,7 @@ export class ServiceComponent implements OnInit {
    todaysadvance:new FormControl(),
    invoicedate : new FormControl(),
    paymenttype : new FormControl(),
+   phoneNumber : new FormControl(),
    email : new FormControl(),
    invoicedetails : new FormArray([])
   });

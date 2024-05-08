@@ -9,7 +9,6 @@ export default class SwalAlert{
         showConfirmButton: false,
         timer: 1500
       }) 
-    
     }
  static  UpdateMessage() {
     Swal.fire({
@@ -20,11 +19,7 @@ export default class SwalAlert{
       timer: 1500
     })
   }
-
-
-
   static IsDelete() {
-
     return Swal.fire({
       position: 'top',
       title: 'Are you sure?',
@@ -42,7 +37,6 @@ export default class SwalAlert{
       }
     });
   }
-
   static  DeleteMessage() {
     // Swal.fire({
     //   position: 'top',
@@ -60,8 +54,5 @@ export default class SwalAlert{
       showConfirmButton: false,
       timer: 3000 // Adjust the duration as needed (in milliseconds)
     });
-
-  }
-  
-
+  } 
 }
