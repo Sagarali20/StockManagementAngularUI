@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-
 export class UtcConverterService {
-    convertedDate: Date | undefined;
+
+  convertedDate: Date | undefined;
 
   public convertUtcToLocalTime(
     utcDate: string,    
@@ -68,3 +68,4 @@ export enum UtcToLocalTimeFormat {
   SHORT_DATE  = 'shortDate',   // 'd/M/yy'                            - 15/6/15
   SHORT_TIME  = 'shortTime',   // 'h:mm'                              - 9:03
 }
+

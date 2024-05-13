@@ -2,7 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
-import { AuthGuard } from './guards/auth.guard';
+import { AuthGuard } from './core/guards/auth.guard';
 import { AllusersComponent } from './components/allusers/allusers.component';
 import { DashboardComponent } from './components/Admin/dashboard/dashboard.component';
 import { DashboarduiComponent } from './components/dashboardui/dashboardui.component';
@@ -17,7 +17,23 @@ import { XerrorComponent } from './components/Admin/pages/xerror/xerror.componen
 const routes: Routes = [
   
   {path:'', redirectTo:'login', pathMatch:'full'},
-  {path:'login', component : LoginComponent},
+  {
+    path:'auth',
+    loadChildren:() => import('./modules/auth/auth.module').then(m=>m.AuthModule)
+  },
+  {
+    path:'inventory',
+    loadChildren:() => import('./modules/inventory/inventory.module').then(m=>m.InventoryModule)
+  },
+  {
+    path:'customer',
+    loadChildren:() => import('./modules/customer/customer.module').then(m=>m.CustomerModule)
+  },
+  {
+    path:'login', 
+    component : LoginComponent
+  },
+  
   {path:'signup', component:SignupComponent},
 
   {path:'dashboard', component:DashboardComponent,

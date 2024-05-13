@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { DatePipe } from '@angular/common';
-import { UtcConverterService } from '../Utc-converter/utc-converter.service';
+import { UtcConverterService } from 'src/app/core/constant/utc-converter.service';
 
 @Pipe({
   name: 'utcToLocalTime'

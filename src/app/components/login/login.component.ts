@@ -69,8 +69,6 @@ export class LoginComponent implements OnInit {
               type: 'success'
             });
     
-
-
             this.router.navigate(['dashboard']);
           //  window.location.href='/dashboard';
 

@@ -69,7 +69,7 @@ import { SwitchComponent } from './components/Admin/pages/switch/switch.componen
   useClass:TokenInterceptor,
   multi:true
   },User,UtcConverterService],
-
   bootstrap: [AppComponent]
+  
 })
 export class AppModule { }
