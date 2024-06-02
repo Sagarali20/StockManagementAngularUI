@@ -37,47 +37,47 @@ const routes: Routes = [
   {path:'signup', component:SignupComponent},
 
   {path:'dashboard', component:DashboardComponent,
-  children:[
-       {
-          path:'alluser',
-          component:AllusersComponent,
-          canActivate:[AuthGuard]
-        },
-        {
-           path:'category',
-           component:CategoryComponent,
-           canActivate:[AuthGuard]
-         },
-         {
-           path:'product',
-           component:ProductComponent,
-           canActivate:[AuthGuard]
-         },
-         {
-           path: 'product/details/:id', 
-           component: ProductdetailsComponent,
-           canActivate:[AuthGuard]
-          },
-          {
-            path: 'customer', 
-            component: CustomerComponent,
-            canActivate:[AuthGuard]
-           },
-           {
-            path: 'service', 
-            component: ServiceComponent,
-            canActivate:[AuthGuard]
-           },  
-           {
-            path: 'report', 
-            component: ReportComponent,
-            canActivate:[AuthGuard]
-           },           
-           {
-            path:'',
-            component:DashboarduiComponent,
-            canActivate:[AuthGuard]
-            }
+        children:[
+              {
+                path:'alluser',
+                component:AllusersComponent,
+                canActivate:[AuthGuard]
+              },
+              {
+                path:'category',
+                component:CategoryComponent,
+                canActivate:[AuthGuard]
+              },
+              {
+                path:'product',
+                component:ProductComponent,
+                canActivate:[AuthGuard]
+              },
+              {
+              path: 'product/details/:id', 
+              component: ProductdetailsComponent,
+              canActivate:[AuthGuard]
+              },
+              {
+                path: 'customer', 
+                component: CustomerComponent,
+                canActivate:[AuthGuard]
+              },
+              {
+                path: 'service', 
+                component: ServiceComponent,
+                canActivate:[AuthGuard]
+              },  
+              {
+                path: 'report', 
+                component: ReportComponent,
+                canActivate:[AuthGuard]
+              },           
+              {
+                path:'',
+                component:DashboarduiComponent,
+                canActivate:[AuthGuard]
+              }
 
 
   ],
