@@ -10,5 +10,4 @@ export  const APIConstrant = {
     ATTENDANCE :{
         CREATE_ATTENDANCE:'addAttendence'
     }
-
 }
